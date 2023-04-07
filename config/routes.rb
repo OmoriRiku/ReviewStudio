@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  # ユーザー用
-  # URL /users/sign_in ...
-  devise_for :end_users,skip: [:passwords], path: "/users", controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
   ## ファイルパスをpublic/... へ
   #  urlを任意に指定する
   scope module: :public do
@@ -31,6 +25,12 @@ Rails.application.routes.draw do
     get     'search/studios'                          =>  'searches#search_studio'
     get     'search/studios'                          =>  'searches#search_use'
   end
+  # ユーザー用
+  # URL /users/sign_in ...
+  devise_for :end_users,skip: [:passwords], path: "/users", controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
   # 管理者用
   # URL /customers/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
