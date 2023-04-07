@@ -20,7 +20,18 @@
 自身が使用したスタジオの情報を発信したい時
 
 ## 設計書
+- 機能面  
 https://docs.google.com/spreadsheets/d/11eBMvtJpdxM7Hx_tJThg7AveceU0jA8XfC0XOA6iOLU/edit#gid=1091086188
+- WBS  
+https://docs.google.com/spreadsheets/d/1uG1YCKpqb0vU4vYQa89kmzhRVKK_WTpKfpUsySL3mWs/edit#gid=977420151
+- UIFlows  
+https://app.diagrams.net/#G19fllzBHQSitRsj9mcGsZ89STwWs2SArO
+- ワイヤーフレーム  
+https://app.diagrams.net/#G1YEaUGIrX5dEDsrQ7q4D9IoHh9GV2e9b6
+- ER図  
+https://app.diagrams.net/#G1cmFw_h8TmWotT1kJ3PEVCPQKDKQ7_1tX
+- アプリケーション詳細設計  
+https://docs.google.com/spreadsheets/d/1kM28ZwEkv6dViaC76957nv1SfeZ6k2vZn4bGP_0WECs/edit#gid=1740272306
 
 ## 開発環境
 - OS：Linux(CentOS)
