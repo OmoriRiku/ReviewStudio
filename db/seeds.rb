@@ -8,6 +8,7 @@
 
 
 ## 環境変数で管理者のメールアドレスとパスワードを登録する
+#  メールアドレス、パスワードをGitHubへ公開しないようにするため
 Admin.create! ({
   email: ENV['ADMIN_EMAIL'],
   password: ENV['ADMIN_KEY'],
