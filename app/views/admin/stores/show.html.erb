@@ -1,2 +1,25 @@
-<h1>Admin::Stores#show</h1>
-<p>Find me in app/views/admin/stores/show.html.erb</p>
+<div class="container">
+  <h2>店舗の詳細ページ</h2>
+  <div>
+    <%= image_tag @store.get_store_image(200,200), class: "rounded" %>
+  </div>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>店舗名</td>
+        <td><%= @store.name %></td>
+      </tr>
+      <tr>
+        <td>店舗の電話番号</td>
+        <td><%= @store.telephone_number %></td>
+      </tr>
+        <td>店舗の説明</td>
+        <td><%= @store.introduction %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
+    <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+  </div>
+</div>
