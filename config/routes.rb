@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # ユーザー用
+  # URL /users/sign_in ...
+  devise_for :end_users,skip: [:passwords], path: "/users", controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
   ## ファイルパスをpublic/... へ
   #  urlを任意に指定する
   scope module: :public do
@@ -13,7 +19,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     # 用途のルーティング
     # URL /uses/...
-    resources :uses, only: [:index, :edit]
+    resources :uses, only: [:index, :create, :edit, :update]
     # 店舗レビュー用のルーティング
     post    '/stores/:store_id/store_reviews'         =>  'store_reviews#create',   as:  'user_store_store_review'
     delete  '/stores/:store_id/store_reviews/:id'     =>  'store_reviews#destroy'
@@ -25,12 +31,6 @@ Rails.application.routes.draw do
     get     'search/studios'                          =>  'searches#search_studio'
     get     'search/studios'                          =>  'searches#search_use'
   end
-  # ユーザー用
-  # URL /users/sign_in ...
-  devise_for :end_users,skip: [:passwords], path: "/users", controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
   # 管理者用
   # URL /customers/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
