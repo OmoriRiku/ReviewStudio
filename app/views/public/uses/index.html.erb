@@ -1,2 +1,25 @@
-<h1>Public::Uses#index</h1>
-<p>Find me in app/views/public/uses/index.html.erb</p>
+<div class="container">
+  <h2>用途一覧・追加</h2>
+  <!-- 用途新規登録用フォーム -->
+  <%= form_with model:Use.new, url:uses_path, method: :post do |f| %>
+  <table class="table table-borderless">
+    <tbody>
+      <td><%= f.label :name, '用途名' %></td>
+      <td><%= f.text_field :name %></td>
+      <td><%= f.submit '新規登録' %></td>
+    </tbody>
+  </table>
+  <% end %>
+  <!-- 用途一覧表示 -->
+  <h2>用途</h2>
+  <table class="table table-borderless">
+    <tbody>
+      <% @uses.each do |use| %>
+      <tr>
+        <td><%= use.name %></td>
+        <td><%= link_to '編集する', edit_use_path(use) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
