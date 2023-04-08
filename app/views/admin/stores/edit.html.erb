@@ -1,2 +1,30 @@
-<h1>Admin::Stores#edit</h1>
-<p>Find me in app/views/admin/stores/edit.html.erb</p>
+<div class="container">
+  <!-- 表題 -->
+  <h2>店舗編集</h2>
+  <!--店舗の新規更新フォーム-->
+  <%= form_with model: @store, url: store_path(@store), method: :patch do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label :name, '店舗名' %></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :telephone_number, '店舗の電話番号' %></td>
+          <td><%= f.text_field :telephone_number %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :store_image, '店舗の写真' %></td>
+          <td><%= f.file_field :store_image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :introduction, '店舗の説明文' %></td>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <%= f.submit '変更を保存する' %>
+    </div>
+  <% end %>
+</div>

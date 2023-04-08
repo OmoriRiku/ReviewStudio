@@ -3,9 +3,11 @@
   <%= form_with model: @use, url: use_path(@use), method: :patch do |f|%>
     <table class="table table-borderless">
       <tbody>
-        <td>用途名</td>
-        <td><%= f.text_field :name %></td>
-        <td><%= f.submit '変更を保存する' %></td>
+        <tr>
+          <td>用途名</td>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.submit '変更を保存する' %></td>
+        </tr>
       </tbody>
     </table>
   <% end %>
