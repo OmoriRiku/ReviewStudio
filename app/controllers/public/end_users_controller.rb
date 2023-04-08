@@ -6,7 +6,7 @@ class Public::EndUsersController < ApplicationController
   
   def update                                                  ## ユーザー情報の更新
     @user.update(user_params)                                 #  ストロングパラメーターを受け取り更新する
-    redirect_to root_path                                     #  編集後はトップページ
+    redirect_to root_path                                     #  編集後はトップページへ遷移する
   end
   
   private
