@@ -1,7 +1,7 @@
 class Admin::StudiosController < ApplicationController
   def new
     @studio = Studio.new
-    @store = Studio.all.map{ |store| [store.name, store.id] }
+    @store = Store.all.map{ |store| [store.name, store.id] }
     @use = Use.all.map{ |use| [use.name, use.id] }
   end
   
@@ -12,6 +12,7 @@ class Admin::StudiosController < ApplicationController
   end
 
   def index
+    @studios = Studio.all
   end
 
   def show

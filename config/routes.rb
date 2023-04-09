@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     post    '/studios/:studio_id/review_studios'      =>  'studio_reviews#create',  as:  'user_studio_studio_reviews'
     delete  '/studios/:studio_id/review_studios/:id'  =>  'studio_reviews#destroy'
     # 検索用ルーティング
-    get     'search/studios'                          =>  'searches#search_studio'
-    get     'search/studios'                          =>  'searches#search_use'
+    get     '/search_studios'                          =>  'searches#search_studio'
+    get     '/result_studio'                           =>  'searches#associated_result', as: 'associated_result'
   end
   # 管理者用
   # URL /customers/sign_in ...

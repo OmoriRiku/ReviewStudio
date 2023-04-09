@@ -1,0 +1,35 @@
+<div class="container">
+  <!-- 表題 -->
+  <h2>
+    <% if word.blank? %>
+      <strong>スタジオ一覧</strong>
+    <% else %>
+      <strong><%= word %>のスタジオ一覧</strong>
+    <% end %>
+    <% if admin_signed_in? %>
+      <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
+    <% end %>
+  </h2>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>スタジオ名</th>
+        <th>店舗名</th>
+        <th>個人料金</th>
+        <th>3名料金</th>
+        <th>4名料金</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% studios.each do |studio| %>
+      <tr>
+        <td><%= link_to studio.name, studio_path(studio) %></td>
+        <td><%= studio.store.name %></td>
+        <td><%= studio.personal_price %></td>
+        <td><%= studio.three_price %></td>
+        <td><%= studio.more_price %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
