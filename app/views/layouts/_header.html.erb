@@ -1,13 +1,16 @@
 <header>
-  <div>
-    <div class="container d-flex">
+  <div class="container">
+    <div>
+      <!-- ロゴの表示 -->
       <h1><%= link_to 'Logo', root_path %></h1>
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!--ハンバーガーメニュー-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+            <!--管理者もしくはユーザーがログインした時のヘッダー-->
             <% if admin_signed_in? || end_user_signed_in? %>
             <li class="nav-item">
               <%= link_to 'about', about_path, class: "nav-link text-dark" %>
@@ -21,11 +24,13 @@
             <li class="nav-item">
               <%= link_to '用途一覧', uses_path, class: "nav-link text-dark" %>
             </li>
+            <!--管理者がログインしていればログアウトを表示する-->
             <% if admin_signed_in? %>
               <li class="nav-item">
                 <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
-              <% elsif end_user_signed_in? %>
+            <!--ユーザーがログインしていれば、ログアウト、ユーザーの写真を表示する-->
+            <% elsif end_user_signed_in? %>
               <li class="nav-item">
                 <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: "nav-link text-dark" %>
               </li>
@@ -35,6 +40,7 @@
                 <% end %>
               </li>
             <% end %>
+            <!-- ログインしていない場合のヘッダー -->
             <% else %>
             <li class="nav-item">
               <%= link_to 'about', about_path, class: "nav-link text-dark" %>
@@ -55,9 +61,17 @@
               <%= link_to 'ログイン', new_end_user_session_path, class: "nav-link text-dark" %>
             </li>
             <% end %>
+            <!-- ヘッダーここまで -->
           </ul>
         </div>
       </nav>
+    </div>
+    <!--スタジオ検索フォーム-->
+    <div>
+      <%= form_with url: search_studios_path, method: :get do |f| %>
+        <%= f.text_field :word %>
+        <%= f.submit '検索する' %>
+      <% end %>
     </div>
   </div>
 </header>

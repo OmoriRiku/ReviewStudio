@@ -1,4 +1,11 @@
 class Studio < ApplicationRecord
+  has_one_attached :studio_image
+  
+  def get_studio_image
+    (studio_image.attached?) ? studio_image : "no_image.jpg"
+  end
+
+  
   has_many    :studio_reviews       # スタジオレビューとのリレーション
                                     # スタジオはスタジオレビューを複数持っている
   

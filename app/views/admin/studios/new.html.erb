@@ -10,6 +10,10 @@
           <td><%= f.text_field :name %></td>
         </tr>
         <tr>
+          <td><%= f.label :studio_image, 'スタジオの写真' %></td>
+          <td><%= f.file_field :studio_image, accept: 'image/*' %></td>
+        </tr>
+        <tr>
           <td><%= f.label :store_id, '店舗名' %></td>
           <td><%= f.select :store_id, @store %></td>
         </tr>

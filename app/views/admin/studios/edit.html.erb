@@ -1,2 +1,46 @@
-<h1>Admin::Studios#edit</h1>
-<p>Find me in app/views/admin/studios/edit.html.erb</p>
+<div class="container">
+  <!--表題-->
+  <h1>スタジオ編集</h1>
+  <!--スタジオ新規登録フォーム-->
+  <%= form_with model: @studio, url: studio_path(@studio), method: :patch do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label :name, 'スタジオ名' %></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :studio_image, 'スタジオの写真' %></td>
+          <td><%= f.file_field :studio_image, accept: 'image/*' %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :store_id, '店舗名' %></td>
+          <td><%= f.select :store_id, @store %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :use_id, '用途名' %></td>
+          <td><%= f.select :use_id, @use %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :introduction, '説明' %></td>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :personal_price, '個人料金' %></td>
+          <td><%= f.number_field :personal_price %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :three_price, '3名料金' %></td>
+          <td><%= f.number_field :three_price %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :more_price, '４名以上の料金' %></td>
+          <td><%= f.number_field :more_price %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <%= f.submit '変更を保存する' %>
+    </div>
+  <% end %>
+</div>

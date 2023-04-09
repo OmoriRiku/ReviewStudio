@@ -1,15 +1,18 @@
 <div class="container">
   <!-- 表題 -->
   <h2>
+    <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
     <% if word.blank? %>
       <strong>スタジオ一覧</strong>
     <% else %>
       <strong><%= word %>のスタジオ一覧</strong>
     <% end %>
+    <!-- 管理者であれば新規作成用のボタンを表示する -->
     <% if admin_signed_in? %>
       <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
     <% end %>
   </h2>
+  <!-- スタジオ一覧表示 -->
   <table class="table table-borderless">
     <thead>
       <tr>
