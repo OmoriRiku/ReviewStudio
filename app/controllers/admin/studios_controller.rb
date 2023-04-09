@@ -30,6 +30,8 @@ class Admin::StudiosController < ApplicationController
   end
   
   def destroy
+    @studio.destroy
+    redirect_to studios_path
   end
   
   private

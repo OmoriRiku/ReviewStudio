@@ -18,6 +18,7 @@
       <tr>
         <th>スタジオ名</th>
         <th>店舗名</th>
+        <th>用途</th>
         <th>個人料金</th>
         <th>3名料金</th>
         <th>4名料金</th>
@@ -28,6 +29,7 @@
       <tr>
         <td><%= link_to studio.name, studio_path(studio) %></td>
         <td><%= studio.store.name %></td>
+        <td><%= studio.use.name %></td>
         <td><%= studio.personal_price %></td>
         <td><%= studio.three_price %></td>
         <td><%= studio.more_price %></td>
