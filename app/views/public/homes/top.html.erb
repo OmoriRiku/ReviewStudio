@@ -1,2 +1,17 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <h2>Public::Homes#top</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>用途</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @uses.each do |use| %>
+      <tr>
+        <td><%= link_to use.name, associated_result_path(word: use.name, studio_id: use.studios.ids) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</siv>

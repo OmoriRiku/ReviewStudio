@@ -18,8 +18,13 @@
       </tr>
     </tbody>
   </table>
+  <% if admin_signed_in? %>
+    <div>
+      <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
+      <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+    </div>
+  <% end %>
   <div>
-    <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
-    <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+    <p><%= @store.name %>のスタジオ一覧は<%= link_to 'こちら', associated_result_path(word: @store.name, studio_id: @store.studios.ids) %></p>
   </div>
 </div>

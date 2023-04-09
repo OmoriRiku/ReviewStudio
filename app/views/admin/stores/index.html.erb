@@ -1,6 +1,11 @@
 <div class="container">
   <!-- 表題 -->
-  <h2>店舗一覧</h2>
+  <h2>
+    <strong>店舗一覧</strong>
+    <% if admin_signed_in? %>
+      <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success" %>
+    <% end %>
+  </h2>
   <!-- 店舗一覧表示 -->
   <div>
     <% @stores.each do |store| %>

@@ -9,9 +9,9 @@ class Store < ApplicationRecord
   store_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  has_many  :studio                   # スタジオとのリレーション
+  has_many  :studios                  # スタジオとのリレーション
                                       # 店舗はスタジオを複数持っている
                                       
-  has_many  :store_review             # 店舗レビューとのリレーション
+  has_many  :store_reviews            # 店舗レビューとのリレーション
                                       # 店舗は店舗レビューを複数持っている
 end
