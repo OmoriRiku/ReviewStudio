@@ -21,6 +21,7 @@ class Admin::StoresController < ApplicationController
 
   ## 詳細ページ
   def show
+    @store_review = StoreReview.new
   end
 
   ## 編集ページ

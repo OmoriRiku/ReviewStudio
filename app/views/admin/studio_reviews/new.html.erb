@@ -1,0 +1,41 @@
+<div class="container">
+  <%= form_with model: [@studio, @studio_review], url: studio_studio_reviews_path, method: :post do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label :rate, '評価' %></td>
+          <td><small id="studio-post-raty"></small></td>
+          <script>
+          document.addEventListener("turbolinks:load", function() {           //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+            let studio_elem = document.querySelector('#studio-post-raty');    //  htmlのid属性から取得する
+            studio_elem.textContent = '';                                     //  ratyの星が増え続けるバグ回避
+            let studio_opt = {                                                //  ratyのオプション
+                starOn: '<%= asset_path('star-on.png') %>',                   //  黄色の星をassets/imagesフォルダから読み込む
+                starOff: '<%= asset_path('star-off.png') %>',                 //  白色の星をassets/imagesフォルダから読み込む
+                scoreName: 'studio_review[rate]',                             //  カラムの指定
+            };
+            raty(studio_elem,studio_opt);
+          });
+          </script>
+        </tr>
+        <tr>
+          <td><%= f.label :studio_id, '店舗名' %></td>
+          <td><%= f.select :studio_id, Studio.all.map{ |studio| [studio.name, studio.id] } %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :use_id, '用途名' %></td>
+          <td><%= f.select :use_id, Use.all.map { |use| [use.name, use.id] } %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :number_studio, '使用人数' %></td>
+          <td><%= f.select :number_studio, *[1..10] %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :comment, 'レビュー本文' %></td>
+          <td><%= f.text_area :comment %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit 'レビューを投稿する' %>
+  <% end %>
+</div>

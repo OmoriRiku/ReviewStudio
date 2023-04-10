@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2023_04_07_050708) do
     t.integer "studio_id", null: false
     t.integer "use_id", null: false
     t.integer "rate", null: false
-    t.integer "number_studio", null: false
+    t.string "number_studio"
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_04_07_050708) do
   end
 
   create_table "uses", force: :cascade do |t|
-    t.integer "end_user_id", null: false
+    t.integer "end_user_id"
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
