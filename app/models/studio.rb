@@ -1,10 +1,12 @@
 class Studio < ApplicationRecord
+  has_one_attached :studio_image
+  
   has_many    :studio_reviews       # スタジオレビューとのリレーション
                                     # スタジオはスタジオレビューを複数持っている
   
   belongs_to  :store                # 店舗とのリレーション
-                                    # スタジオは店舗を複数持っている
+                                    # 店舗はスタジオを複数持っている
   
   belongs_to  :use                  # 用途とのリレーション
-                                    # スタジオは用途を複数持っている
+                                    # 用途はスタジオを複数持っている
 end

@@ -1,2 +1,8 @@
-<h1>Admin::Stores#new</h1>
-<p>Find me in app/views/admin/stores/new.html.erb</p>
+<div class="container">
+  <!-- 表題 -->
+  <h2>店舗新規作成</h2>
+  <!--店舗の新規作成フォーム-->
+  <%= form_with model: @store, url: stores_path, method: :post do |f| %>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+  <% end %>
+</div>

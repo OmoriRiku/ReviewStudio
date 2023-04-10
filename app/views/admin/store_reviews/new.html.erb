@@ -1,0 +1,31 @@
+<!--店舗レビュー作成-->
+<div class="container">
+  <h3>店舗レビュー作成</h3>
+  <%= form_with model: [@store, @store_review], url: store_store_reviews_path, method: :post do |f|%>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label :rate, '評価' %></td>
+          <td><small id="post-raty"></small></td>
+            <script>
+            document.addEventListener("turbolinks:load", function() {    //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+              let elem = document.querySelector('#post-raty');           //  htmlのid=post-ratyから取得する
+              elem.textContent = '';                                     //  ratyの星が増え続けるバグ回避
+              let opt = {                                                //  ratyのオプション
+                  starOn: '<%= asset_path('star-on.png') %>',            //  黄色の星をassets/imagesフォルダから読み込む
+                  starOff: '<%= asset_path('star-off.png') %>',          //  白色の星をassets/imagesフォルダから読み込む
+                  scoreName: 'store_review[rate]',                       //  カラムの指定
+              };
+              raty(elem,opt);                                            //  変数を
+            });
+            </script>
+        </tr>
+        <tr>
+          <td><%= f.label :comment %></td>
+          <td><%= f.text_area :comment %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit 'レビューを投稿する' %>
+  <% end %>
+</div>
