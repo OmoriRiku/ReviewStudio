@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- スタジオの詳細 -->
   <h2>スタジオの詳細ページ</h2>
   <div>
     <% if @studio.studio_image.attached? %>
@@ -39,41 +40,12 @@
       </tr>
     </tbody>
   </table>
+  <!-- 管理者の場合表示 -->
   <% if admin_signed_in? %>
     <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
     <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+  <% elsif end_user_signed_in? %>
+    <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
   <% end %>
-  <table class="table table-borderless">
-    <tbody>
-      <% @studio.studio_reviews.each do |studio_review| %>
-      <tr>
-        <td><%= image_tag studio_review.end_user.profile_image, size: "40x40", class: "rounded-circle" %></td>
-        <td><%= studio_review.end_user.name %></td>
-        <td id="studio-show-raty<%= studio_review.id %>"></td>
-        <script>
-        document.addEventListener("turbolinks:load", function() {
-            let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
-            studio_show_elm.textContent = '';
-            let studio_show_val = {
-                starOn: '<%= asset_path('star-on.png') %>',
-                starOff: '<%= asset_path('star-off.png') %>',
-                readOnly: true,
-                score: <%= studio_review.rate %>,
-            };
-            raty(studio_show_elm,studio_show_val);
-        });
-        </script>
-        <td><%= studio_review.number_studio %></td>
-        <td><%= studio_review.use.name %></td>
-      </tr>
-      <tr>
-        <td><%= studio_review.comment %></td>
-      </tr>
-      <tr>
-        <td><%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, class: "btn btn-danger"%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
+  <%= render 'admin/studio_reviews/index', studio: @studio %>
 </div>
