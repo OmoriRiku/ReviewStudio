@@ -20,16 +20,9 @@ Rails.application.routes.draw do
     # 用途のルーティング
     # URL /uses/...
     resources :uses, only: [:index, :create, :edit, :update]
-    # 店舗レビュー用のルーティング
-    post    '/stores/:store_id/store_reviews'         =>  'store_reviews#create',   as:  'user_store_store_review'
-    delete  '/stores/:store_id/store_reviews/:id'     =>  'store_reviews#destroy'
-    # スタジオレビューのルーティング
-    get     '/studios/:studio_id/review_studios/new'  =>  'studio_reviews#new',     as:  'user_new_studio_studio_reviews'
-    post    '/studios/:studio_id/review_studios'      =>  'studio_reviews#create',  as:  'user_studio_studio_reviews'
-    delete  '/studios/:studio_id/review_studios/:id'  =>  'studio_reviews#destroy'
     # 検索用ルーティング
-    get     'search/studios'                          =>  'searches#search_studio'
-    get     'search/studios'                          =>  'searches#search_use'
+    get     '/search_studios'                          =>  'searches#search_studio'
+    get     '/result_studio'                           =>  'searches#associated_result', as: 'associated_result'
   end
   # 管理者用
   # URL /customers/sign_in ...
@@ -44,13 +37,13 @@ Rails.application.routes.draw do
     # 店舗レビューの削除用に入れ子にする
     # URL /stores/....
     resources :stores do
-      resources :store_reviews, only: [:destroy]
+      resources :store_reviews, only: [:new, :create, :destroy]
     end
     # スタジオのルーティング
     # スタジオレビューの削除用に入れ子にする
     # URL /studios/...
     resources :studios do
-      resources :studio_reviews, only: [:destroy]
+      resources :studio_reviews, only: [:new, :create, :destroy]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

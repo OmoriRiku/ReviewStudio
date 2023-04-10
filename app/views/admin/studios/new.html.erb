@@ -1,2 +1,8 @@
-<h1>Admin::Studios#new</h1>
-<p>Find me in app/views/admin/studios/new.html.erb</p>
+<div class="container">
+  <!--表題-->
+  <h1>スタジオ新規登録</h1>
+  <!--スタジオ新規登録フォーム-->
+  <%= form_with model: @studio, url: studios_path, method: :post do |f| %>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+  <% end %>
+</div>

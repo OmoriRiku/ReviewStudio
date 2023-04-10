@@ -1,2 +1,8 @@
-<h1>Admin::Studios#edit</h1>
-<p>Find me in app/views/admin/studios/edit.html.erb</p>
+<div class="container">
+  <!--表題-->
+  <h1>スタジオ編集</h1>
+  <!--スタジオ新規登録フォーム-->
+  <%= form_with model: @studio, url: studio_path(@studio), method: :patch do |f| %>
+    <%= render :partial => 'form', :locals => { :f => f, :edit_flag => true } %>
+  <% end %>
+</div>

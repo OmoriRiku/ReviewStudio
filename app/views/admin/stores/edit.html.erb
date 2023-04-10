@@ -1,2 +1,9 @@
-<h1>Admin::Stores#edit</h1>
-<p>Find me in app/views/admin/stores/edit.html.erb</p>
+<div class="container">
+  <!-- 表題 -->
+  <h2>店舗編集</h2>
+  <!--店舗の新規更新フォーム-->
+  <%= form_with model: @store, url: store_path(@store), method: :patch do |f| %>
+    <%= render :partial => 'form', :locals => { :f => f, :edit_flag => true } %>
+  <% end %>
+  <!--店舗レビュー-->
+</div>
