@@ -1,40 +1,46 @@
 <div class="container">
-  <!-- 表題 -->
-  <h2>
-    <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
-    <% if word.blank? %>
-      <strong>スタジオ一覧</strong>
-    <% else %>
-      <strong><%= word %>のスタジオ一覧</strong>
-    <% end %>
-    <!-- 管理者であれば新規作成用のボタンを表示する -->
-    <% if admin_signed_in? %>
-      <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
-    <% end %>
-  </h2>
-  <!-- スタジオ一覧表示 -->
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th>スタジオ名</th>
-        <th>店舗名</th>
-        <th>用途</th>
-        <th>個人料金</th>
-        <th>3名料金</th>
-        <th>4名料金</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% studios.each do |studio| %>
-      <tr>
-        <td><%= link_to studio.name, studio_path(studio) %></td>
-        <td><%= studio.store.name %></td>
-        <td><%= studio.use.name %></td>
-        <td><%= studio.personal_price %></td>
-        <td><%= studio.three_price %></td>
-        <td><%= studio.more_price %></td>
-      </tr>
+  <div class="mt-5">
+    <!-- 表題 -->
+    <div class="text-center">
+      <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
+      <% if word.blank? %>
+        <h2><strong>スタジオ一覧</strong></h2>
+      <% else %>
+        <h2 class="d-inline-block"><strong><%= word %>のスタジオ一覧</strong></h2>
       <% end %>
-    </tbody>
-  </table>
+      <!-- 管理者であれば新規作成用のボタンを表示する -->
+      <% if admin_signed_in? %>
+        <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
+      <% end %>
+    </div>
+    <!-- スタジオ一覧表示 -->
+    <div class="row">
+      <div class="col-md-8 mx-auto mt-5">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>スタジオ名</th>
+              <th>店舗名</th>
+              <th>用途</th>
+              <th>個人料金</th>
+              <th>3名料金</th>
+              <th>4名料金</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% studios.each do |studio| %>
+            <tr>
+              <td><%= link_to studio.name, studio_path(studio) %></td>
+              <td><%= studio.store.name %></td>
+              <td><%= studio.use.name %></td>
+              <td><%= studio.personal_price %></td>
+              <td><%= studio.three_price %></td>
+              <td><%= studio.more_price %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

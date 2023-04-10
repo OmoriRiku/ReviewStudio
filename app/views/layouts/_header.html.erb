@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <div>
+    <div class="d-xl-flex justify-content-between">
       <!-- ロゴの表示 -->
       <h1><%= link_to 'Logo', root_path %></h1>
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -67,7 +67,7 @@
       </nav>
     </div>
     <!--スタジオ検索フォーム-->
-    <div>
+    <div class="text-right">
       <%= form_with url: search_studios_path, method: :get do |f| %>
         <%= f.text_field :word %>
         <%= f.submit '検索する' %>

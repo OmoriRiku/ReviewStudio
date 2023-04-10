@@ -1,68 +1,45 @@
 <div class="container">
+  <div class="row">
   <!--店舗の詳細-->
-  <h2>店舗の詳細ページ</h2>
-  <div>
+    <div class="col-md-10">
+      <h2>店舗の詳細ページ</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
     <% if @store.store_image.attached? %>
       <%= image_tag @store.store_image, size:"200x200", class: "rounded" %>
     <% else %>
       <%= image_tag 'no_image.jpg', size: "200x200", class: "rounded" %>
     <% end %>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>店舗名</td>
+            <td><%= @store.name %></td>
+          </tr>
+          <tr>
+            <td>店舗の電話番号</td>
+            <td><%= @store.telephone_number %></td>
+          </tr>
+            <td>店舗の説明</td>
+            <td><%= @store.introduction %></td>
+          </tr>
+          <tr>
+            <td><%= @store.name %>のスタジオ一覧は<%= link_to 'こちら', associated_result_path(word: @store.name, studio_id: @store.studios.ids) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>店舗名</td>
-        <td><%= @store.name %></td>
-      </tr>
-      <tr>
-        <td>店舗の電話番号</td>
-        <td><%= @store.telephone_number %></td>
-      </tr>
-        <td>店舗の説明</td>
-        <td><%= @store.introduction %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= @store.name %>のスタジオ一覧は<%= link_to 'こちら', associated_result_path(word: @store.name, studio_id: @store.studios.ids) %></td>
-      </tr>
-    </tbody>
-  </table>
   <% if admin_signed_in? %>
     <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
     <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+  <% else end_user_signed_in? %>
+    <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
   <% end %>
-  <%= link_to 'スタジオレビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
-  <!--登録された店舗レビュー一覧を表示-->
-  <h3>店舗レビュー一覧</h3>
-  <table class="table table-borderless">
-    <tbody>
-      <% @store.store_reviews.each do |store_review| %>
-        <tr>
-          <td><%= image_tag store_review.end_user.profile_image, size: "40x40", class: "rounded-circle" %></td>
-          <td id="show_raty<%= store_review.id %>"></td>
-          <script>
-          document.addEventListener("turbolinks:load", function() {
-              let show = document.querySelector('#show_raty<%= store_review.id %>');
-              show.textContent = '';
-              let val = {
-                  starOn: '<%= asset_path('star-on.png') %>',
-                  starOff: '<%= asset_path('star-off.png') %>',
-                  readOnly: true,
-                  score: <%= store_review.rate %>,
-              };
-              raty(show,val);
-          });
-          </script>
-          <td><%= store_review.end_user.name %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= store_review.comment %></td>
-        </tr>
-        <tr>
-          <td><%= link_to '削除する', store_store_review_path(store_review.store, store_review), method: :delete, class: "btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'admin/store_reviews/index', store: @store %>
+  </div>
 </div>

@@ -11,7 +11,6 @@ class Public::UsesController < ApplicationController
   ## 用途新規登録機能
   def create
     @use = Use.new(use_params)
-    @use.end_user_id = current_end_user.id
     @use.save
     redirect_to uses_path
   end
@@ -20,6 +19,7 @@ class Public::UsesController < ApplicationController
   def edit
   end
   
+  ## 用途更新機能
   def update
     @use.update(use_params)
     redirect_to uses_path
