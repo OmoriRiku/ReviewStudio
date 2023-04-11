@@ -1,0 +1,16 @@
+<div class="mt-5">
+  <table class="table table-borderless text-center">
+    <thead>
+      <tr>
+        <th>店舗一覧</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stores.each do |store| %>
+        <tr>
+          <td><%= link_to store.name, store_path(store) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

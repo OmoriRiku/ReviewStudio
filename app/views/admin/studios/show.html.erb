@@ -1,51 +1,86 @@
 <div class="container">
-  <!-- スタジオの詳細 -->
-  <h2>スタジオの詳細ページ</h2>
-  <div>
-    <% if @studio.studio_image.attached? %>
-      <%= image_tag @studio.studio_image, size:"200x200", class: "rounded" %>
-    <% else %>
-      <%= image_tag 'no_image.jpg', size: "200x200", class: "rounded" %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'public/uses/side_use', uses: @uses %>
+      <%= render 'admin/stores/side_store', stores: @stores %>
+    </div>
+    <div class="col-md-9">
+      <!-- スタジオの詳細 -->
+      <h2 class="text-center">スタジオの詳細ページ</h2>
+      <div class="d-md-flex justify-content-around align-items-center mt-3">
+        <div>
+          <% if @studio.studio_image.attached? %>
+            <%= image_tag @studio.studio_image, size:"300x300", class: "rounded" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "200x200", class: "rounded" %>
+          <% end %>
+        </div>
+        <div>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td>スタジオ名</td>
+                <td><%= @studio.name %></td>
+              </tr>
+              <tr>
+              <% unless @studio.studio_reviews.average(:rate) == nil %>
+              <tr>
+                <td>平均評価</td>
+                <td id="studio_avarage-raty"></td>
+                <script>
+                    document.addEventListener("turbolinks:load", function() {
+                        let studio_avarage_elm = document.querySelector('#studio_avarage-raty');
+                        studio_avarage_elm.textContent = '';
+                        let studio_avarage_val = {
+                            starOn: '<%= asset_path('star-on.png') %>',
+                            starOff: '<%= asset_path('star-off.png') %>',
+                            readOnly: true,
+                            score: <%= (@studio.studio_reviews.average(:rate)).ceil %>,
+                        };
+                        raty(studio_avarage_elm,studio_avarage_val);
+                    });
+                </script>
+              </tr>
+              <% end %>
+              </tr>
+              <tr>
+                <td>店舗名</td>
+                <td><%= @studio.store.name %></td>
+              </tr>
+              <tr>
+                <td>用途</td>
+                <td><%= @studio.use.name %></td>
+              </tr>
+              <tr>
+                <td>スタジオの特徴</td>
+                <td><%= @studio.introduction %></td>
+              </tr>
+              <tr>
+                <td>個人料金(1h)</td>
+                <td><%= @studio.personal_price %></td>
+              </tr>
+              <tr>
+                <td>3名料金(1h)</td>
+                <td><%= @studio.three_price %></td>
+              </tr>
+              <tr>
+                <td>４名以上の料金(1h)</td>
+                <td><%= @studio.more_price %></td>
+              </tr>
+            </tbody>
+          </table>
+          <% if admin_signed_in? %>
+            <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
+            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <% if end_user_signed_in? %>
+          <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
+        <% end %>
+      </div>
+      <%= render 'admin/studio_reviews/index', studio: @studio %>
+    </div>
   </div>
-  <table class="table table-borderless">
-    <tbody>
-      <tr>
-        <td>スタジオ名</td>
-        <td><%= @studio.name %></td>
-      </tr>
-      <tr>
-        <td>店舗名</td>
-        <td><%= @studio.store.name %></td>
-      </tr>
-      <tr>
-        <td>用途</td>
-        <td><%= @studio.use.name %></td>
-      </tr>
-      <tr>
-        <td>スタジオの特徴</td>
-        <td><%= @studio.introduction %></td>
-      </tr>
-      <tr>
-        <td>個人料金</td>
-        <td><%= @studio.personal_price %></td>
-      </tr>
-      <tr>
-        <td>3名料金</td>
-        <td><%= @studio.three_price %></td>
-      </tr>
-      <tr>
-        <td>４名以上の料金</td>
-        <td><%= @studio.more_price %></td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- 管理者の場合表示 -->
-  <% if admin_signed_in? %>
-    <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
-    <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
-  <% elsif end_user_signed_in? %>
-    <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
-  <% end %>
-  <%= render 'admin/studio_reviews/index', studio: @studio %>
 </div>

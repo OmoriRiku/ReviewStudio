@@ -1,39 +1,40 @@
 class Public::UsesController < ApplicationController
-  # edit,updateアクションメソッドの実行前にset_user_idを実行する
-  before_action :set_use_id, only: [:edit, :update]
+  before_action :is_user_login_authenticate, only: [:create, :edit, :update]
+  before_action :set_use_id,                 only: [:edit, :update]
+  before_action :get_all_stores,             only: [:index]
   
-  ## 用途一覧ページ
-  def index
-    @uses = Use.all
+  def index                                           ## 用途一覧ページ
     @use = Use.new
+    @uses = Use.all
   end
   
-  ## 用途新規登録機能
-  def create
+  def create                                          ## 用途新規登録機能
     @use = Use.new(use_params)
     @use.save
     redirect_to uses_path
   end
 
-  ## 用途編集ページ
-  def edit
+  def edit                                            ## 用途編集ページ
   end
   
-  ## 用途更新機能
-  def update
+  def update                                          ## 用途更新機能
     @use.update(use_params)
     redirect_to uses_path
   end
   
   private
   
-  ## Useモデルから指定されたIDを取得するメソッド
-  def set_use_id
+  def is_user_login_authenticate                      ## ログインしていなければ元のページへ戻るメソッド
+    unless admin_signed_in? || end_user_signed_in?
+      redirect_back fallback_location: root_path
+    end
+  end
+  
+  def set_use_id                                      ## Useモデルから指定されたIDを取得するメソッド
     @use = Use.find(params[:id])
   end
   
-  ## ストロングパラメーター
-  def use_params
+  def use_params                                      ## ストロングパラメーター
     params.require(:use).permit(:name)
   end
 end
