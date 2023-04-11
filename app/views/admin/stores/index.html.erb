@@ -1,20 +1,28 @@
 <div class="container">
-  <!-- 表題 -->
-  <h2>
-    <strong>店舗一覧</strong>
-    <% if admin_signed_in? %>
-      <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success" %>
-    <% end %>
-  </h2>
-  <!-- 店舗一覧表示 -->
-  <div>
-    <% @stores.each do |store| %>
-    <div>
-      <%= link_to store_path(store) do %>
-        <%= image_tag store.get_store_image, size: "200x200" %>
-      <% end %>
+  <div class="row">
+    <!-- sidebar -->
+    <div class="col-md-3 col-sm-10">
+      <%= render 'public/uses/side_use', uses: @uses %>
+      <%= render 'admin/stores/side_store', stores: @stores %>
     </div>
-    <h3><%= store.name %></h3>
-    <% end %>
+    <div class="col-md-9">
+      <h2>
+        <strong>店舗一覧</strong>
+        <% if admin_signed_in? %>
+          <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success" %>
+        <% end %>
+      </h2>
+      <!-- 店舗一覧表示 -->
+      <div>
+        <% @stores.each do |store| %>
+        <div>
+          <%= link_to store_path(store) do %>
+            <%= image_tag store.get_store_image, size: "200x200" %>
+          <% end %>
+        </div>
+        <h3><%= store.name %></h3>
+        <% end %>
+      </div>
+      </div>
   </div>
 </div>

@@ -41,7 +41,7 @@ https://docs.google.com/spreadsheets/d/1kM28ZwEkv6dViaC76957nv1SfeZ6k2vZn4bGP_0W
 - IDE：Cloud9
 
 ## 使用素材
-- ぱくたそからフリーの画像素材を拝借予定
-- https://www.pakutaso.com/
+- shutterstockからフリーの画像素材を拝借予定
+- https://www.shutterstock.com/ja
 - ロゴの作成
 - https://www.shopify.com/jp/tools/logo-maker

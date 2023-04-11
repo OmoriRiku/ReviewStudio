@@ -1,39 +1,12 @@
+<div class="mv"></div>
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-2 col-sm-10">
-      <table class="table table-borderless text-center">
-        <thead>
-          <tr>
-            <th>用途</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @uses.each do |use| %>
-          <tr>
-            <td><%= link_to use.name, associated_result_path(word: use.name, studio_id: use.studios.ids) %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="mt-5">
-        <table class="table table-borderless text-center">
-          <thead>
-            <tr>
-              <th>店舗一覧</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @stores.each do |store| %>
-              <tr>
-                <td><%= link_to store.name, store_path(store) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        </div>
-      </div>
-      <div class="col-md-10 col-sm-10">
-        <%= render 'admin/studios/index', word: @word, studios: @studios %>
+    <div class="col-md-3 col-sm-10">
+      <%= render 'public/uses/side_use', uses: @uses %>
+      <%= render 'admin/stores/side_store', stores: @stores %>
+    </div>
+    <div class="col-md-9 col-sm-10">
+      <%= render 'admin/studios/index', word: @word, studios: @studios %>
     </div>
   </div>
 </div>
