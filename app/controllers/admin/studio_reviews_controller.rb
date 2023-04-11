@@ -8,6 +8,7 @@ class Admin::StudioReviewsController < ApplicationController
     @studio = Studio.find(params[:studio_id])
     @studio_review = StudioReview.new(studio_review_params)
     @studio_review.end_user_id = current_end_user.id
+    @studio_review.studio_id = @studio.id
     @studio_review.save
     redirect_to studio_path(@studio)
   end
