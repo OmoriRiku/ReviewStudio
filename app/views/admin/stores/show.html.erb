@@ -27,19 +27,20 @@
             <td>店舗の説明</td>
             <td><%= @store.introduction %></td>
           </tr>
-          <tr>
-            <td><%= @store.name %>のスタジオ一覧は<%= link_to 'こちら', associated_result_path(word: @store.name, studio_id: @store.studios.ids) %></td>
-          </tr>
         </tbody>
       </table>
+      <div>
+        <%= @store.name %>のスタジオ一覧は<%= link_to 'こちら', associated_result_path(word: @store.name, studio_id: @store.studios.ids) %>
+      </div>
+      <div>
+        <% if admin_signed_in? %>
+          <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
+          <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
+        <% elsif end_user_signed_in? %>
+          <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <% if admin_signed_in? %>
-    <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
-    <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
-  <% else end_user_signed_in? %>
-    <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
-  <% end %>
   <%= render 'admin/store_reviews/index', store: @store %>
-  </div>
 </div>
