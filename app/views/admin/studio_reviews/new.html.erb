@@ -19,8 +19,8 @@
           </script>
         </tr>
         <tr>
-          <td><%= f.label :studio_id, '店舗名' %></td>
-          <td><%= f.select :studio_id, Studio.all.map{ |studio| [studio.name, studio.id] } %></td>
+          <td>スタジオ名</td>
+          <td><%= @studio.name %></td>
         </tr>
         <tr>
           <td><%= f.label :use_id, '用途名' %></td>
