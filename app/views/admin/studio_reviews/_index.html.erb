@@ -1,36 +1,39 @@
 <!-- スタジオレビュー -->
-<table class="table table-borderless">
-  <tbody>
+<h3><%= studio.studio_reviews.count %>件のレビュー</h3>
+<div class="row mt-3">
+  <div class="col-md-9 mx-auto">
     <% studio.studio_reviews.each do |studio_review| %>
-    <tr>
-      <td><%= image_tag studio_review.end_user.profile_image, size: "40x40", class: "rounded-circle" %></td>
-      <td><%= studio_review.end_user.name %></td>
-      <td id="studio-show-raty<%= studio_review.id %>"></td>
-      <script>
-      document.addEventListener("turbolinks:load", function() {
-          let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
-          studio_show_elm.textContent = '';
-          let studio_show_val = {
-              starOn: '<%= asset_path('star-on.png') %>',
-              starOff: '<%= asset_path('star-off.png') %>',
-              readOnly: true,
-              score: <%= studio_review.rate %>,
-          };
-          raty(studio_show_elm,studio_show_val);
-      });
-      </script>
-      <td><%= studio_review.number_studio %></td>
-      <td><%= studio_review.use.name %></td>
-    </tr>
-    <tr>
-      <td><%= studio_review.comment %></td>
-    </tr>
-    <tr>
+      <div class="review-position">
+        <div class="review-info">
+          <%= image_tag studio_review.end_user.profile_image, size: "40x40", class: "rounded-circle" %>
+          <small class="review-userinfo"><%= studio_review.end_user.name %></small>
+        </div>
+        <div class="review-sub-info">
+        <small class="review-raty" id="studio-show-raty<%= studio_review.id %>"></small>
+        <script>
+          document.addEventListener("turbolinks:load", function() {
+              let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
+              studio_show_elm.textContent = '';
+              let studio_show_val = {
+                  starOn: '<%= asset_path('star-on.png') %>',
+                  starOff: '<%= asset_path('star-off.png') %>',
+                  readOnly: true,
+                  score: <%= studio_review.rate %>,
+              };
+              raty(studio_show_elm,studio_show_val);
+          });
+        </script>
+        <small class="review-sub-text"><%= studio_review.number_studio %>人</small>
+        <small class="review-sub-text"><%= studio_review.use.name %></small>
+        </div>
+      </div>
+      <p class="review-text"><%= studio_review.comment %></p>
       <!-- 管理者、もしくはレビュー投稿者に削除ボタンを表示 -->
-      <% if current_end_user == store_review.end_user || admin_signed_in? %>
-        <td><%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, class: "btn btn-danger"%></td>
+      <% if current_end_user == studio_review.end_user || admin_signed_in? %>
+      <div class="text-right">
+        <%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, class: "btn btn-danger"%>
+      </div>
       <% end %>
-    </tr>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
