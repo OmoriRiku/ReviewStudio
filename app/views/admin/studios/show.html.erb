@@ -1,12 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <%= render 'public/uses/side_use', uses: @uses %>
-      <%= render 'admin/stores/side_store', stores: @stores %>
-    </div>
-    <div class="col-md-9">
+    <div class="col-md-8 mx-auto">
       <!-- スタジオの詳細 -->
-      <h2 class="text-center">スタジオの詳細ページ</h2>
+      <h2>スタジオの詳細ページ</h2>
       <div class="d-md-flex justify-content-around align-items-center mt-3">
         <div>
           <% if @studio.studio_image.attached? %>
@@ -70,11 +66,17 @@
             </tbody>
           </table>
           <% if admin_signed_in? %>
-            <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
-            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+            <div class="d-flex justify-content-around">
+              <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
+              <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+            </div>
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
       <div class="text-center mt-3">
         <% if end_user_signed_in? %>
           <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
