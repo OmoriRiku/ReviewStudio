@@ -1,9 +1,13 @@
+<!--店舗の更新フォーム-->
 <div class="container">
-  <!-- 表題 -->
-  <h2>店舗編集</h2>
-  <!--店舗の新規更新フォーム-->
-  <%= form_with model: @store, url: store_path(@store), method: :patch do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f, :edit_flag => true } %>
-  <% end %>
-  <!--店舗レビュー-->
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h2 class="text-center">店舗編集</h2>
+        <div class="mt-3">
+        <%= form_with model: @store, url: store_path(@store), method: :patch do |f| %>
+          <%= render :partial => 'form', :locals => { :f => f, :edit_flag => true } %>
+        <% end %>
+        </div>
+    </div>
+  </div>
 </div>

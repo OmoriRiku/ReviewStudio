@@ -5,11 +5,12 @@
       <%= render 'admin/stores/side_store', stores: @stores %>
     </div>
     <div class="col-md-9 text-center">
-      <h2>用途一覧・追加</h2>
+      <% if end_user_signed_in? || admin_signed_in? %>
+      <h2>使用用途追加</h2>
       <!-- 用途新規登録用フォーム -->
       <div class="row mt-3">
         <div class="col-md-8 mx-auto">
-          <%= form_with model:Use.new, url:uses_path, method: :post do |f| %>
+          <%= form_with model: @use, url:uses_path, method: :post do |f| %>
             <table class="table table-borderless">
               <tbody>
                 <tr>
@@ -22,8 +23,9 @@
           <% end %>
         </div>
       </div>
+      <% end %>
       <!-- 用途一覧表示 -->
-      <h2>用途</h2>
+      <h2>使用用途一覧</h2>
       <div class="row mt-3">
         <div class="col-md-6 mx-auto">
           <table class="table table-borderless">

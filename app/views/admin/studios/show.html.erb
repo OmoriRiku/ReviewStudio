@@ -35,7 +35,7 @@
                             starOn: '<%= asset_path('star-on.png') %>',
                             starOff: '<%= asset_path('star-off.png') %>',
                             readOnly: true,
-                            score: <%= (@studio.studio_reviews.average(:rate)).ceil %>,
+                            score: <%= (@studio.studio_reviews.average(:rate)).round %>,
                         };
                         raty(studio_avarage_elm,studio_avarage_val);
                     });
