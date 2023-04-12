@@ -61,13 +61,13 @@ header {
  
 .mv {
   background-image: url("/images/mv.jpg");
-  height: 480px;
+  height: 380px;
   background-size: cover;
   background-position: center;
 }
 
 .mv-text-wrapper {
-  padding-top: 186px;
+  padding-top: 256px;
   padding-left: 270px;
   padding-right: 270px;
 }
