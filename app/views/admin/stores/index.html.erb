@@ -1,12 +1,7 @@
 <div class="container">
   <div class="row">
-    <!-- sidebar -->
-    <div class="col-md-3 col-sm-10">
-      <%= render 'public/uses/side_use', uses: @uses %>
-      <%= render 'admin/stores/side_store', stores: @stores %>
-    </div>
     <!-- 店舗一覧表示 -->
-    <div class="col-md-9">
+    <div class="col-md-10 mx-auto">
       <h2 class="store-title text-center">店舗一覧
         <% if admin_signed_in? %>
           <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success" %>

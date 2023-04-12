@@ -1,8 +1,13 @@
+<!--スタジオ新規登録フォーム-->
 <div class="container">
-  <!--表題-->
-  <h1>スタジオ新規登録</h1>
-  <!--スタジオ新規登録フォーム-->
-  <%= form_with model: @studio, url: studios_path, method: :post do |f| %>
-    <%= render :partial => 'form', :locals => { :f => f } %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+    <h2>スタジオ新規登録</h2>
+      <div class="mt-5">
+      <%= form_with model: @studio, url: studios_path, method: :post do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+      <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -2,11 +2,11 @@
   <tbody>
     <tr>
       <td><%= f.label :name, '店舗名', class: "col-form-label" %></td>
-      <td><%= f.text_field :name, class: "form-control" %></td>
+      <td><%= f.text_field :name, placeholder: "music store", class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :telephone_number, '店舗の電話番号', class: "col-form-label" %></td>
-      <td><%= f.text_field :telephone_number, class: "form-control" %></td>
+      <td><%= f.text_field :telephone_number, placeholder: "08012345678", class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :store_image, '店舗の写真', class: "col-form-label" %></td>
@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td><%= f.label :introduction, '店舗の説明文', class: "col-form-label" %></td>
-      <td><%= f.text_area :introduction, class: "form-control" %></td>
+      <td><%= f.text_area :introduction, placeholder: "店舗の説明を入力してください", class: "form-control" %></td>
     </tr>
   </tbody>
 </table>
