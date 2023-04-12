@@ -4,7 +4,9 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
-         
+  validates :name, presence: true
+  validates :profile_image, presence: true
+  
   has_one_attached :profile_image                 ## ユーザーの写真のカラム追加
   
   has_many :studio_reviews, dependent: :nullify   ## 用途、スタジオのレビュー、店舗のレビューとのリレーション記述

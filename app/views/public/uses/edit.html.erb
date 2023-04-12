@@ -1,10 +1,10 @@
 <div class="container">
-  <h2>用途編集</h2>
+  <h2 class="page-title">使用用途編集</h2>
   <%= form_with model: @use, url: use_path(@use), method: :patch do |f|%>
     <table class="table table-borderless">
       <tbody>
         <tr>
-          <td>用途名</td>
+          <td>使用用途名</td>
           <td><%= f.text_field :name %></td>
           <td><%= f.submit '変更を保存する' %></td>
         </tr>

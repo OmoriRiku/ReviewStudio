@@ -5,22 +5,21 @@
       <%= render 'public/uses/side_use', uses: @uses %>
       <%= render 'admin/stores/side_store', stores: @stores %>
     </div>
+    <!-- 店舗一覧表示 -->
     <div class="col-md-9">
-      <h2>
-        <strong>店舗一覧</strong>
+      <h2 class="store-title text-center">店舗一覧
         <% if admin_signed_in? %>
           <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success" %>
         <% end %>
       </h2>
-      <!-- 店舗一覧表示 -->
-      <div>
+      <div class="d-flex store-flex-box">
         <% @stores.each do |store| %>
-        <div>
+        <div class="store-box-container mt-5">
           <%= link_to store_path(store) do %>
-            <%= image_tag store.get_store_image, size: "200x200" %>
+            <%= image_tag store.get_store_image, class: "bg-wrapper store-img-wrap" %>
           <% end %>
+          <h3 class="text-center mt-3 page-title"><%= store.name %></h3>
         </div>
-        <h3><%= store.name %></h3>
         <% end %>
       </div>
       </div>
