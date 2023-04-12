@@ -1,4 +1,6 @@
 class Admin::StoreReviewsController < ApplicationController
+  before_action :authenticate_end_user!, only: [:new, :create]
+  
   def new                                                   ##　店舗レビュー新規作成ページ
     @store = Store.find(params[:store_id])                  #   レビューする店舗を特定する
     @store_review = StoreReview.new                         #   ストアレビューのインスタンス作成
@@ -11,9 +13,9 @@ class Admin::StoreReviewsController < ApplicationController
     @store_review.store_id = @store.id                      #  store_idと店舗のidの紐付け
     if @store_review.save                                   #  保存する
       flash[:review_notice] = 'レビューを投稿しました'
-      redirect_to store_path(@store)                        #  店舗の詳細ページへ遷移する
+      redirect_to store_path(@store)                        #  データを保存したら店舗の詳細ページへ遷移する
     else
-      render :new
+      render :new                                           #  データが保存できなければ新規登録ページを表示する
     end
   end
   
