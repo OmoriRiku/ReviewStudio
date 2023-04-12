@@ -11,10 +11,12 @@
     <meta name="turbolinks-visit-control" content="reload">
   </head>
 
-  <body>
+  <body class="font-family">
     <%= render 'layouts/header' %>
-    <div class="main-wrapper"></div>
     <main>
+      <% unless current_page?(root_path) || current_page?(about_path) %>
+        <%= render 'layouts/flash' %>
+      <% end %>
         <%= yield %>
     </main>
   </body>
