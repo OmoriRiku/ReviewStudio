@@ -1,4 +1,5 @@
 class Admin::StudioReviewsController < ApplicationController
+  before_action :authenticate_end_user!, only: [:new, :create]
   def new                                                       ## 新規登録ページ
     @studio = Studio.find(params[:studio_id])                   #  スタジオを特定する
     @studio_review = StudioReview.new                           #  スタジオレビューのインスタンス生成
