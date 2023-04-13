@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mx-auto">
-      <h2>スタジオの詳細ページ</h2>
-      <div class="d-md-flex justify-content-around align-items-center mt-3">
+    <div class="col-md-9 mx-auto">
+      <h2><%= @studio.name %>の詳細ページ</h2>
+      <div class="d-md-flex justify-content-around align-items-center mt-5">
         <div class="mx-auto">
           <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
         </div>
@@ -64,18 +64,10 @@
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 mx-auto">
       <div class="mt-5">
         <h2>スタジオの特徴</h2>
         <p class="mt-5"><%= @studio.introduction %></p>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 mx-auto">
       <% if end_user_signed_in? %>
       <div class="text-center mt-5">
         <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
