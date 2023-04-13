@@ -16,18 +16,6 @@
           <ul class="navbar-nav">
             <!--管理者もしくはユーザーがログインした時のヘッダー-->
             <% if admin_signed_in? || end_user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'about', about_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '店舗一覧', stores_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'スタジオ一覧', studios_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '用途一覧', uses_path, class: "nav-link text-dark" %>
-            </li>
             <!--管理者がログインしていればログアウトを表示する-->
             <% if admin_signed_in? %>
               <li class="nav-item">
@@ -47,22 +35,10 @@
             <!-- ログインしていない場合のヘッダー -->
             <% else %>
             <li class="nav-item">
-              <%= link_to 'about', about_path, class: "nav-link text-dark" %>
+              <%= link_to 'ログイン', new_end_user_session_path, class: "nav-link text-primary" %>
             </li>
             <li class="nav-item">
-              <%= link_to '店舗一覧', stores_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'スタジオ一覧', studios_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '用途一覧', uses_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_end_user_registration_path, class: "nav-link text-dark" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_end_user_session_path, class: "nav-link text-dark" %>
+              <%= link_to '新規登録', new_end_user_registration_path, class: "nav-link text-success" %>
             </li>
             <% end %>
             <!-- ヘッダーここまで -->

@@ -5,7 +5,7 @@
       <div class="d-flex justify-content-center align-items-center">
         <h2>店舗一覧</h2>
         <% if admin_signed_in? %>
-          <%= link_to '新規登録はこちら', new_store_path, class: "btn btn-success ml-5" %>
+          <%= link_to '新規登録', new_store_path, class: "btn btn-success ml-5" %>
         <% end %>
       </div>
     </div>
@@ -16,7 +16,12 @@
       <%= link_to store_path(store) do %>
         <%= image_tag store.get_store_image(245,245), class: "bg-wrapper" %>
       <% end %>
-    <h3 class="text-center mt-3 page-title"><%= store.name %></h3>
+    <h3 class="text-center mt-3 page-title">
+      <p><%= store.name %></p>
+      <%= link_to associated_result_path(word: store.name, studio_id: store.studios.ids) do %>
+        <%= store.name %>のスタジオ一覧
+      <% end %>
+    </h3>
     </div>
     <% end %>
   </div>
