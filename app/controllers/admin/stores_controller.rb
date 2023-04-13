@@ -1,7 +1,5 @@
 class Admin::StoresController < ApplicationController
   before_action :is_admin_login_authenticate,     only: [:new, :create, :edit, :update, :destroy]
-  before_action :get_all_uses,                    only: [:index, :show]
-  before_action :get_all_stores,                  only: [:show]
   before_action :set_store,                       only: [:show, :edit, :update, :destroy]
 
   def new                                         ## 新規登録ページ
@@ -30,7 +28,7 @@ class Admin::StoresController < ApplicationController
 
   def update                                      ## 更新機能
     if @store.update(store_params)                #  データを更新する
-      flash[:notice] = '店舗を更新しました！'     #  フラッシュメッセージの表示
+      flash[:notice] = '店舗を更新いたしました'   #  フラッシュメッセージの表示
       redirect_to store_path(@store)              #  更新できたら店舗の詳細ページへ遷移する
     else
       render :edit                                #  更新できなければ再度編集ページを表示する
