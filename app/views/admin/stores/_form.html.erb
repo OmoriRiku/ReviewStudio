@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td><%= f.label :introduction, '店舗の説明文', class: "col-form-label" %></td>
-      <td><%= f.text_area :introduction, placeholder: "店舗の説明を入力してください", class: "form-control" %></td>
+      <td class="store-textarea"><%= f.text_area :introduction, placeholder: "店舗の説明を入力してください", class: "form-control", style: "height: 100%;" %></td>
     </tr>
   </tbody>
 </table>
@@ -24,6 +24,6 @@
 </div>
 <% else %>
 <div class="text-center">
-  <%= f.submit '新規登録', class: "btn btn-primary" %>
+  <%= f.submit '新規登録', class: "btn btn-success" %>
 </div>
 <% end %>

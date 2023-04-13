@@ -5,7 +5,7 @@
     <% store.store_reviews.each do |store_review| %>
     <div class="review-info mt-3">
       <div>
-        <%= image_tag store_review.end_user.profile_image, size: "40x40", class: "rounded-circle" %>
+        <%= image_tag store_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
         <small class="review-userinfo"><%= store_review.end_user.name %></small>
       </div>
       <div class="store_review-rate">

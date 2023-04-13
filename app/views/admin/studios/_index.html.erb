@@ -2,24 +2,24 @@
   <div class="text-center">
     <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
     <% if word.blank? %>
-      <h2>スタジオ一覧
-        <% if admin_signed_in? %>
-          <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
-        <% end %>
-      </h2>
-    <% else %>
-      <h2 class="d-inline-block page-titile">
-      <strong class="font-weight-normal"><%= word %>のスタジオ一覧</strong>
-      <!-- 管理者であれば新規作成用のボタンを表示する -->
+    <div class="d-flex justify-content-center align-items-center">
+      <h2>スタジオ一覧</h2>
       <% if admin_signed_in? %>
-        <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success" %>
+        <%= link_to '新規登録はこちら', new_studio_path, class: "btn btn-success ml-5" %>
       <% end %>
-      </h2>
+    </div>
+    <% else %>
+    <div class="d-flex justify-content-center align-items-center">
+      <h2><%= word %>のスタジオ一覧</h2>
+      <% if admin_signed_in? %>
+        <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success ml-5" %>
+      <% end %>
+    </div>
     <% end %>
   </div>
   <!-- スタジオ一覧表示 -->
   <div class="mt-5">
-    <table class="table table-borderless pc-only text-center">
+    <table class="table table-borderless text-center">
       <thead>
         <tr>
           <th>スタジオ名</th>
@@ -43,38 +43,5 @@
         <% end %>
       </tbody>
     </table>
-    
-    <!-- レスポンシブ用（仮）
-    <table class="table table-borderless sp-only">
-      <tbody>
-        <%# studios.each do |studio| %>
-        <tr>
-          <td>スタジオ名</td>
-          <td><%#= link_to studio.name, studio_path(studio) %></td>
-        </tr>
-        <tr>
-          <td>店舗名</td>
-          <td><%#= studio.store.name %></td>
-        </tr>
-        <tr>
-          <td>用途</td>
-          <td><%#= studio.use.name %></td>
-        </tr>
-        <tr>
-          <td>個人料金</td>
-          <td><%#= studio.personal_price %></td>
-        </tr>
-        <tr>
-          <td>3名料金</td>
-          <td><%#= studio.three_price %></td>
-        </tr>
-        <tr>
-          <td>4名料金</td>
-          <td><%#= studio.more_price %></td>
-        </tr>
-        <%# end %>
-      </tbody>
-    </table>
-    -->
   </div>
 </div>
