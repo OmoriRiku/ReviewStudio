@@ -1,7 +1,5 @@
 class Admin::StudiosController < ApplicationController
   before_action :is_admin_login_authenticate,             only: [:new, :create, :edit, :update, :destroy]
-  before_action :get_all_uses,                            only: [:index, :show]
-  before_action :get_all_stores,                          only: [:index, :show]
   before_action :get_registered_use_name,                 only: [:new, :edit]
   before_action :get_registered_store_name,               only: [:new, :edit]
   before_action :set_studio,                              only: [:show, :edit, :update, :destroy]
@@ -53,15 +51,15 @@ class Admin::StudiosController < ApplicationController
   end
 
   
-  def get_registered_use_name         ## 登録されている用途名を取得するメソッド
+  def get_registered_use_name                               ## 登録されている用途名を取得するメソッド
     @use = Use.all.map{ |use| [use.name, use.id] }
   end
   
-  def set_studio                      ## 特定のスタジオのidを取得するメソッド
+  def set_studio                                            ## 特定のスタジオのidを取得するメソッド
     @studio = Studio.find(params[:id])
   end
   
-  def studio_params                   ## ストロングパラメーター
+  def studio_params                                         ## ストロングパラメーター
     params.require(:studio).permit(:use_id, :store_id, :name, :introduction, :personal_price, :three_price, :more_price, :studio_image)
   end
 end

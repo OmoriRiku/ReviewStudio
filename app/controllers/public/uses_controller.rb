@@ -1,7 +1,6 @@
 class Public::UsesController < ApplicationController
   before_action :is_user_login_authenticate, only: [:create, :edit, :update]
   before_action :set_use_id,                 only: [:edit, :update]
-  before_action :get_all_stores,             only: [:index]
   
   def index                                           ## 用途一覧ページ
     @use = Use.new
