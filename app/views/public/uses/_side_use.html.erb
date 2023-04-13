@@ -5,10 +5,6 @@
     </tr>
   </thead>
   <tbody>
-    <% uses.each do |use| %>
-    <tr>
-      <td><%= link_to use.name, associated_result_path(word: use.name, studio_id: use.studios.ids) %></td>
-    </tr>
-    <% end %>
+
   </tbody>
 </table>
