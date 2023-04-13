@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 mx-auto">
-    <h2>スタジオ新規登録</h2>
+    <h2 class="text-center">スタジオ新規登録</h2>
       <div class="mt-5">
       <%= form_with model: @studio, url: studios_path, method: :post do |f| %>
         <%= render :partial => 'form', :locals => { :f => f } %>

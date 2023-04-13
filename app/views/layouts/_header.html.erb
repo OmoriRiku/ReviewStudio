@@ -1,5 +1,5 @@
 <header>
-  <div class="container">
+  <div class="container mb-3">
     <div class="d-xl-flex justify-content-between">
       <!-- ロゴの表示 -->
       <h1 class="logo">
@@ -40,7 +40,7 @@
               </li>
               <li class="nav-item">
                 <%= link_to edit_end_user_path(current_end_user) do %>
-                  <%= image_tag current_end_user.profile_image, class: "rounded-circle", size: "40x40" %>
+                  <%= image_tag current_end_user.get_profile_image(40,40), class: "rounded-circle" %>
                 <% end %>
               </li>
             <% end %>
