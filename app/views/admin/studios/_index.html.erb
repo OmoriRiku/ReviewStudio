@@ -1,44 +1,44 @@
 <div class="container">
-  <div class="text-center">
+  <div>
     <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
     <% if word.blank? %>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex align-items-center">
       <h2>スタジオ一覧</h2>
       <% if admin_signed_in? %>
-        <%= link_to '新規登録はこちら', new_studio_path, class: "btn btn-success ml-5" %>
+        <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
       <% end %>
     </div>
     <% else %>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex align-items-center">
       <h2><%= word %>のスタジオ一覧</h2>
       <% if admin_signed_in? %>
-        <%= link_to '新規作成はこちら', new_studio_path, class: "btn btn-success ml-5" %>
+        <%= link_to '新規作成', new_studio_path, class: "btn btn-success ml-5" %>
       <% end %>
     </div>
     <% end %>
   </div>
   <!-- スタジオ一覧表示 -->
-  <div class="mt-5">
-    <table class="table table-borderless text-center">
-      <thead>
+  <div class="mt-3">
+    <table class="table text-center table-bordered">
+      <thead class="bg-light">
         <tr>
           <th>スタジオ名</th>
-          <th>店舗名</th>
-          <th>用途</th>
           <th>個人料金</th>
           <th>3名料金</th>
           <th>4名料金</th>
+          <th>用途</th>
+          <th>店舗名</th>
         </tr>
       </thead>
       <tbody>
         <% studios.each do |studio| %>
         <tr>
           <td><%= link_to studio.name, studio_path(studio) %></td>
-          <td><%= studio.store.name %></td>
-          <td><%= studio.use.name %></td>
           <td><%= studio.personal_price %></td>
           <td><%= studio.three_price %></td>
           <td><%= studio.more_price %></td>
+          <td><%= studio.use.name %></td>
+          <td><%= studio.store.name %></td>
         </tr>
         <% end %>
       </tbody>

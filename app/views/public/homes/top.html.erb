@@ -2,10 +2,10 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-3">
-      <%= render 'public/uses/side_use', uses: @uses %>
+      <%= render 'layouts/side' %>
     </div>
-    <div class="col-md-9">
-      <h2>スタジオ一覧(最新４件)</h2>
+    <div class="col-md-9 mx-auto">
+      <h2 class="text-center">スタジオ一覧(最新12件)</h2>
       <div class="d-flex flex-wrap justify-content-around">
       <% @studios.each do |studio| %>
         <div class="mt-5">
@@ -16,19 +16,5 @@
         </div>
       <% end %>
       </div>
-      <div class="mt-5">
-        <h2>店舗一覧（最新４件）</h2>
-        <div class="d-flex flex-wrap justify-content-around">
-        <% @stores.each do |store| %>
-          <div class="mt-5">
-            <%= link_to store_path(store) do %>
-              <%= image_tag store.get_store_image(200,200), class: "bg-wrapper" %>
-            <% end %>
-          <h3 class="text-center mt-3 page-title"><%= store.name %></h3>
-          </div>
-        <% end %>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

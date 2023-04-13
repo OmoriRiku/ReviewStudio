@@ -21,6 +21,7 @@ class Admin::StoresController < ApplicationController
   end
 
   def show                                        ## 詳細ページ
+    @studios = @store.studios.all
   end
 
   def edit                                        ## 編集ページ
