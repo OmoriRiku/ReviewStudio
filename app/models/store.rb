@@ -2,6 +2,8 @@ class Store < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: {maximum: 20}  ## 店舗名のバリデーション、２０文字以上の場合エラー                     
   validates :introduction, presence: true, length: { maximum: 800 }         ## 店舗説明文のバリデーション、500文字以上、未入力時エラー
   validates :telephone_number, numericality: true, length: { in: 5..15 }    ## 店舗電話番号のバリデーション、半角英数字、5~15文字以内でなければエラー
+  validates :post_code, numericality: true, length: { is: 7 }               ## 店舗の郵便番号のバリデーション、半角数字、７文字でなければエラー
+  validates :address, presence: true, length: { maximum: 50 }               ## 店舗の住所のバリデーション、未入力、50文字以上はエラー
   validates :store_image, presence: true                                    ## 店舗の写真のバリデーション
   
   has_one_attached  :store_image                                            # 店舗の写真のカラム

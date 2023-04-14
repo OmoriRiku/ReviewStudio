@@ -57,6 +57,6 @@ class Admin::StoresController < ApplicationController
   end
   
   def store_params                                ## ストロングパラメーター
-    params.require(:store).permit(:name, :telephone_number, :store_image, :introduction)
+    params.require(:store).permit(:name, :telephone_number, :store_image, :introduction, :post_code, :address)
   end
 end
