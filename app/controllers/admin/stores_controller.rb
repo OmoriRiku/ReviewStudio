@@ -22,6 +22,9 @@ class Admin::StoresController < ApplicationController
 
   def show                                        ## 詳細ページ
     @studios = @store.studios.all
+    if @store.id == nil
+      redirect_to root_path
+    end
   end
 
   def edit                                        ## 編集ページ
@@ -45,6 +48,12 @@ class Admin::StoresController < ApplicationController
   
   def set_store                                   ## Storeモデルから特定のIDを取得するメソッド
     @store = Store.find(params[:id])
+  end
+  
+  def destroy_session
+    if @store.id == nil
+      redirect_to root_path
+    end
   end
   
   def store_params                                ## ストロングパラメーター
