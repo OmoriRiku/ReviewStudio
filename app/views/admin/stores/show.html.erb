@@ -1,80 +1,78 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 mx-auto ml-3">
-      <!-- 店舗の詳細 -->
-      <h2><%= @store.name %>の詳細</h2>
-      <div class="mt-3 row">
-        <div class="col-md-6 text-center">
-          <%= image_tag @store.get_store_image(300,300), class: "rounded" %>
-        </div>
-        <div class="col-md-6 mx-auto">
-          <table class="table table-borderless">
-            <tbody>
-              <tr>
-                <td class="col-md-6">店舗名</td>
-                <td><%= @store.name %></td>
-              </tr>
-              <% unless @store.store_reviews.average(:rate) == nil %>
-              <tr>
-                <td>平均評価</td>
-                <td id="store_avarage-raty"></td>
-              </tr>
-              <script>
-              document.addEventListener("turbolinks:load", function() {
-                  let store_avarage_elm = document.querySelector('#store_avarage-raty');
-                  store_avarage_elm.textContent = '';
-                  let store_avarage_val = {
-                      starOn: '<%= asset_path('star-on.png') %>',
-                      starOff: '<%= asset_path('star-off.png') %>',
-                      readOnly: true,
-                      score: <%= (@store.store_reviews.average(:rate)).round %>,
-                  };
-                  raty(store_avarage_elm,store_avarage_val);
-              });
-              </script>
-              <% end %>
-              <tr>
-                <td>店舗の電話番号</td>
-                <td><%= @store.telephone_number %></td>
-              </tr>
-              <tr>
-                <td>郵便番号</td>
-                <td><%= @store.post_code %></td>
-              </tr>
-              <tr>
-                <td>店舗の住所</td>
-                <td><%= @store.address %></td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- 管理者の場合編集、削除のリンク表示 -->
-          <div class="mt-2">
-            <% if admin_signed_in? %>
-              <div class="d-flex justify-content-around">
-                <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
-                <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger" %>
-              </div>
+  <!-- 店舗の詳細 -->
+  <div class="border-bottom pb-4">
+    <h2 class="ml-3"><%= @store.name %>の詳細</h2>
+    <div class="mt-5 row">
+      <div class="col-md-6 text-center">
+        <%= image_tag @store.get_store_image(300,300), class: "rounded" %>
+      </div>
+      <div class="col-md-6 mx-auto">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="col-md-6">店舗名</td>
+              <td><%= @store.name %></td>
+            </tr>
+            <% unless @store.store_reviews.average(:rate) == nil %>
+            <tr>
+              <td>平均評価</td>
+              <td id="store_avarage-raty"></td>
+            </tr>
+            <script>
+            document.addEventListener("turbolinks:load", function() {
+                let store_avarage_elm = document.querySelector('#store_avarage-raty');
+                store_avarage_elm.textContent = '';
+                let store_avarage_val = {
+                    starOn: '<%= asset_path('star-on.png') %>',
+                    starOff: '<%= asset_path('star-off.png') %>',
+                    readOnly: true,
+                    score: <%= (@store.store_reviews.average(:rate)).round %>,
+                };
+                raty(store_avarage_elm,store_avarage_val);
+            });
+            </script>
             <% end %>
-          </div>
+            <tr>
+              <td>店舗の電話番号</td>
+              <td><%= @store.telephone_number %></td>
+            </tr>
+            <tr>
+              <td>郵便番号</td>
+              <td><%= @store.post_code %></td>
+            </tr>
+            <tr>
+              <td>店舗の住所</td>
+              <td><%= @store.address %></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 管理者の場合編集、削除のリンク表示 -->
+        <div class="mt-3">
+          <% if admin_signed_in? %>
+            <div class="d-flex justify-content-start">
+              <%= link_to '編集する', edit_store_path(@store), class: "btn btn-primary" %>
+              <%= link_to '削除する', store_path(@store), method: :delete, data: { confirm: "店舗を削除してもよろしいですか？" }, class: "btn btn-danger ml-5" %>
+            </div>
+          <% end %>
         </div>
-      </div>
-      <div class="mt-5 ml-3">
-        <h2>店舗の説明文</h2>
-        <p><%= @store.introduction %></p>
-      </div>
-      <div class="mt-5">
-        <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
-      </div>
-      <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
-      <% if end_user_signed_in? %>
-      <div class="mt-5 text-center">
-        <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
-      </div>
-      <% end %>
-      <!-- レビュー一覧 -->
-      <div class="mt-5 ml-3">
-        <%= render 'admin/store_reviews/index', store: @store %>
       </div>
     </div>
+  </div>
+  <div class="mt-3 pb-4 border-bottom">
+    <h2 class="ml-3">店舗の説明文</h2>
+    <p class="ml-3"><%= @store.introduction %></p>
+  </div>
+  <div class="mt-3 pb-4 border-bottom">
+    <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
+  </div>
+  <!-- レビュー一覧 -->
+  <div class="mt-3 ml-3">
+    <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
+    <% if end_user_signed_in? %>
+      <div class="text-center mb-3">
+        <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
+      </div>
+    <% end %>
+    <%= render 'admin/store_reviews/index', store: @store %>
   </div>
 </div>
