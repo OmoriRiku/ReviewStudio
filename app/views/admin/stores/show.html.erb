@@ -1,13 +1,13 @@
 <div class="container">
   <!-- 店舗の詳細 -->
-  <div class="border-bottom pb-4">
-    <h2 class="ml-3"><%= @store.name %>の詳細</h2>
+  <div class="border-bottom pb-5">
+    <h2 class="text-center"><%= @store.name %>の詳細</h2>
     <div class="mt-5 row">
       <div class="col-md-6 text-center">
-        <%= image_tag @store.get_store_image(300,300), class: "rounded" %>
+        <%= image_tag @store.get_store_image(300,250), class: "rounded" %>
       </div>
       <div class="col-md-6 mx-auto">
-        <table class="table table-borderless">
+        <table class="table table-bordered" style="width: 570px;">
           <tbody>
             <tr>
               <td class="col-md-6">店舗名</td>
@@ -58,21 +58,21 @@
       </div>
     </div>
   </div>
-  <div class="mt-3 pb-4 border-bottom">
-    <h2 class="ml-3">店舗の説明文</h2>
-    <p class="ml-3"><%= @store.introduction %></p>
+  <div class="mt-5 pb-5 border-bottom">
+    <h2 class="text-center">店舗の説明文</h2>
+    <p class="mt-3 mx-auto" style="width: 60%;"><%= @store.introduction %></p>
   </div>
-  <div class="mt-3 pb-4 border-bottom">
+  <div class="mt-5 pb-5 border-bottom">
     <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
   </div>
   <!-- レビュー一覧 -->
-  <div class="mt-3 ml-3">
-    <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
-    <% if end_user_signed_in? %>
-      <div class="text-center mb-3">
-        <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
-      </div>
-    <% end %>
+  <div class="mt-5">
     <%= render 'admin/store_reviews/index', store: @store %>
   </div>
+  <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
+  <% if end_user_signed_in? %>
+  <div class="text-center mb-3">
+    <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
+  </div>
+  <% end %>
 </div>

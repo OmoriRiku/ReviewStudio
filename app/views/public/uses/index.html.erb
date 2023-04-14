@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 text-center mx-auto">
-      <% if end_user_signed_in? || admin_signed_in? %>
+      <% if admin_signed_in? %>
       <h2>使用用途追加</h2>
       <!-- 使用用途新規登録用フォーム -->
       <div class="row mt-3">
@@ -13,20 +13,22 @@
       </div>
       <% end %>
       <!-- 使用用途一覧表示 -->
-      <h2 class="mt-5">使用用途一覧</h2>
-      <div class="row mt-3">
-        <div class="col-md-6 mx-auto">
-          <table class="table table-borderless">
-            <tbody>
-              <% @uses.each do |use| %>
-              <tr>
-                <td><%= use.name %></td>
-                <td><%= link_to '編集する', edit_use_path(use) %></td>
-              </tr>
+      <div class="mx-auto">
+        <h2 class="mt-5">使用用途一覧</h2>
+        <table class="table table-borderless" style="width: 100%;">
+          <tbody>
+            <% @uses.each do |use| %>
+            <tr>
+              <td><%= use.name %></td>
+              <% if admin_signed_in? %>
+                <td>
+                  <%= link_to '編集する', edit_use_path(use) %>
+                </td>
               <% end %>
-            </tbody>
-          </table>
-        </div>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

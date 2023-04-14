@@ -1,15 +1,15 @@
 <div class="container">
   <div class="pb-4 border-bottom">
-    <h2 class="ml-3"><%= @studio.name %>の詳細ページ</h2>
+    <h2 class="text-center"><%= @studio.name %>の詳細ページ</h2>
     <div class="row mt-5">
       <div class="col-md-6 text-center">
-        <%= image_tag @studio.get_studio_image(400,400), class: "rounded" %>
+        <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
       </div>
       <div class="com-md-6 mx-auto">
-        <table class="table table-borderless">
+        <table class="table table-bordered" style="width: 560px">
           <tbody>
             <tr>
-              <td>スタジオ名</td>
+              <td style="width: 200px;">スタジオ名</td>
               <td><%= @studio.name %></td>
             </tr>
             <tr>
@@ -56,24 +56,24 @@
           </tbody>
         </table>
         <% if admin_signed_in? %>
-          <div class="d-flex justify-content-around">
+          <div class="d-flex justify-content-start">
             <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
-            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
+            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger ml-3" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="mt-3 pb-4 border-bottom">
-    <h2 class="ml-3">スタジオの特徴</h2>
-    <p class="mt-3 ml-3"><%= @studio.introduction %></p>
+  <div class="mt-5 pb-4 border-bottom">
+    <h2 class="text-center">スタジオの特徴</h2>
+    <p class="mt-3 mx-auto" style="width: 60%;"><%= @studio.introduction %></p>
   </div>
-  <div class="mt-3 ml-3">
-    <% if end_user_signed_in? %>
-      <div class="text-center mb-3">
-        <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
-      </div>
-    <% end %>
+  <div class="mt-5 mb-3">
     <%= render 'admin/studio_reviews/index', studio: @studio %>
   </div>
+  <% if end_user_signed_in? %>
+    <div class="text-center">
+      <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

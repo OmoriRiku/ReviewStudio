@@ -50,12 +50,6 @@ class Admin::StoresController < ApplicationController
     @store = Store.find(params[:id])
   end
   
-  def destroy_session
-    if @store.id == nil
-      redirect_to root_path
-    end
-  end
-  
   def store_params                                ## ストロングパラメーター
     params.require(:store).permit(:name, :telephone_number, :store_image, :introduction, :post_code, :address)
   end

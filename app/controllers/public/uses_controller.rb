@@ -1,6 +1,6 @@
 class Public::UsesController < ApplicationController
-  before_action :is_user_login_authenticate, only: [:create, :edit, :update]
-  before_action :set_use_id,                 only: [:edit, :update]
+  before_action :is_admin_login_authenticate, only: [:create, :edit, :update]
+  before_action :set_use_id,                  only: [:edit, :update]
   
   def index                                           ## 用途一覧ページ
     @use = Use.new
@@ -22,12 +22,6 @@ class Public::UsesController < ApplicationController
   end
   
   private
-  
-  def is_user_login_authenticate                      ## ログインしていなければ元のページへ戻るメソッド
-    unless admin_signed_in? || end_user_signed_in?
-      redirect_back fallback_location: root_path
-    end
-  end
   
   def set_use_id                                      ## Useモデルから指定されたIDを取得するメソッド
     @use = Use.find(params[:id])
