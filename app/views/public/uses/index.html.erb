@@ -3,7 +3,7 @@
     <div class="col-md-10 text-center mx-auto">
       <% if end_user_signed_in? || admin_signed_in? %>
       <h2>使用用途追加</h2>
-      <!-- 用途新規登録用フォーム -->
+      <!-- 使用用途新規登録用フォーム -->
       <div class="row mt-3">
         <div class="col-md-8 mx-auto">
           <%= form_with model: @use, url:uses_path, method: :post do |f| %>
@@ -12,7 +12,7 @@
         </div>
       </div>
       <% end %>
-      <!-- 用途一覧表示 -->
+      <!-- 使用用途一覧表示 -->
       <h2 class="mt-5">使用用途一覧</h2>
       <div class="row mt-3">
         <div class="col-md-6 mx-auto">
