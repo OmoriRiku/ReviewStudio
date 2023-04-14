@@ -1,3 +1,4 @@
+<!-- スタジオの詳細ページ -->
 <div class="container">
   <div class="pb-4 border-bottom">
     <h2 class="text-center"><%= @studio.name %>の詳細ページ</h2>
@@ -13,21 +14,22 @@
               <td><%= @studio.name %></td>
             </tr>
             <tr>
+            <!-- レビューのrateカラムが登録されていなければ平均評価を表示しない -->
             <% unless @studio.studio_reviews.average(:rate) == nil %>
             <tr>
               <td>平均評価</td>
               <td id="studio_avarage-raty"></td>
               <script>
-                  document.addEventListener("turbolinks:load", function() {
-                      let studio_avarage_elm = document.querySelector('#studio_avarage-raty');
-                      studio_avarage_elm.textContent = '';
-                      let studio_avarage_val = {
-                          starOn: '<%= asset_path('star-on.png') %>',
-                          starOff: '<%= asset_path('star-off.png') %>',
-                          readOnly: true,
-                          score: <%= (@studio.studio_reviews.average(:rate)).round %>,
+                  document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+                      let studio_avarage_elm = document.querySelector('#studio_avarage-raty'); // htmlのid属性から取得する
+                      studio_avarage_elm.textContent = ''; //  ratyの星が増え続けるバグ回避
+                      let studio_avarage_val = { // ratyのオプションを指定
+                          starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
+                          starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
+                          readOnly: true, // 読み込み専用(編集はできないようにするため)
+                          score: <%= (@studio.studio_reviews.average(:rate)).round %>, // レビューの平均値
                       };
-                      raty(studio_avarage_elm,studio_avarage_val);
+                      raty(studio_avarage_elm,studio_avarage_val); // raty.jsへ渡す変数
                   });
               </script>
             </tr>
@@ -55,6 +57,7 @@
             </tr>
           </tbody>
         </table>
+        <!-- 管理者の場合編集、削除のリンクを表示 -->
         <% if admin_signed_in? %>
           <div class="d-flex justify-content-start">
             <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
@@ -71,6 +74,7 @@
   <div class="mt-5 mb-3">
     <%= render 'admin/studio_reviews/index', studio: @studio %>
   </div>
+  <!-- ユーザーがログインしている場合、レビュー作成を表示 -->
   <% if end_user_signed_in? %>
     <div class="text-center">
       <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
