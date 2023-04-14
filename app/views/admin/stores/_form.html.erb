@@ -2,11 +2,19 @@
   <tbody>
     <tr>
       <td><%= f.label :name, '店舗名', class: "col-form-label" %></td>
-      <td><%= f.text_field :name, placeholder: "music store", class: "form-control" %></td>
+      <td><%= f.text_field :name, placeholder: 'music store', class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :telephone_number, '店舗の電話番号', class: "col-form-label" %></td>
-      <td><%= f.text_field :telephone_number, placeholder: "08012345678", class: "form-control" %></td>
+      <td><%= f.text_field :telephone_number, placeholder: '08012345678', class: "form-control w-50" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :post_code, '店舗の郵便番号', class: "col-form-label" %></td>
+      <td><%= f.text_field :post_code, placeholder: '0001111', class: "form-control w-50" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :address, '店舗の住所', class: "col-form-label" %></td>
+      <td><%= f.text_field :address, placeholder: '東京都渋谷区佐々木神園町0-0', class: "form-control" %></td>
     </tr>
     <tr>
       <td><%= f.label :store_image, '店舗の写真', class: "col-form-label" %></td>
@@ -14,7 +22,7 @@
     </tr>
     <tr>
       <td><%= f.label :introduction, '店舗の説明文', class: "col-form-label" %></td>
-      <td class="store-textarea"><%= f.text_area :introduction, placeholder: "店舗の説明を入力してください", class: "form-control", style: "height: 100%;" %></td>
+      <td class="store-textarea"><%= f.text_area :introduction, placeholder: '店舗の説明を入力してください', class: "form-control", style: "height: 100%;" %></td>
     </tr>
   </tbody>
 </table>
