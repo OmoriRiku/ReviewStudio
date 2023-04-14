@@ -10,15 +10,15 @@
               <td><%= f.label :rate, '評価' %></td>
               <td><small id="studio-post-raty"></small></td>
               <script>
-              document.addEventListener("turbolinks:load", function() {           //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
-                let studio_elem = document.querySelector('#studio-post-raty');    //  htmlのid属性から取得する
-                studio_elem.textContent = '';                                     //  ratyの星が増え続けるバグ回避
-                let studio_opt = {                                                //  ratyのオプション
-                    starOn: '<%= asset_path('star-on.png') %>',                   //  黄色の星をassets/imagesフォルダから読み込む
-                    starOff: '<%= asset_path('star-off.png') %>',                 //  白色の星をassets/imagesフォルダから読み込む
-                    scoreName: 'studio_review[rate]',                             //  カラムの指定
+              document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+                let studio_elem = document.querySelector('#studio-post-raty'); // htmlのid属性から取得する
+                studio_elem.textContent = ''; //  ratyの星が増え続けるバグ回避
+                let studio_opt = { // ratyのオプションを指定
+                    starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
+                    starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
+                    scoreName: 'studio_review[rate]', // rateカラムの指定
                 };
-                raty(studio_elem,studio_opt);                                     //  raty.jsへ変数を渡す
+                raty(studio_elem,studio_opt); // raty.jsへ変数を渡す
               });
               </script>
             </tr>
