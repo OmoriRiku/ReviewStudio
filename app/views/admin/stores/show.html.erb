@@ -1,13 +1,13 @@
 <div class="container">
-  <!-- 店舗の詳細 -->
   <div class="row">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-8 mx-auto">
+      <!-- 店舗の詳細 -->
       <h2><%= @store.name %>の詳細</h2>
-      <div class="mt-5 d-md-flex justify-content-around align-items-center">
-        <div>
+      <div class="mt-5 row">
+        <div class="col-md-6 text-center">
           <%= image_tag @store.get_store_image(300,200), class: "rounded" %>
         </div>
-        <div>
+        <div class="col-md-6 mx-auto">
           <table class="table table-borderless">
             <tbody>
               <tr>
@@ -39,6 +39,7 @@
               </tr>
             </tbody>
           </table>
+          <!-- 管理者の場合編集、削除のリンク表示 -->
           <div class="mt-5">
             <% if admin_signed_in? %>
               <div class="d-flex justify-content-around">
@@ -51,16 +52,18 @@
       </div>
       <div class="mt-5">
         <h2>店舗の説明文</h2>
-        <p class="mt-3"><%= @store.introduction %></p>
+        <p class="mt-5"><%= @store.introduction %></p>
       </div>
       <div class="mt-5">
         <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
       </div>
+      <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
       <% if end_user_signed_in? %>
       <div class="mt-5">
         <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
       </div>
       <% end %>
+      <!-- レビュー一覧 -->
       <div class="mt-5">
         <%= render 'admin/store_reviews/index', store: @store %>
       </div>

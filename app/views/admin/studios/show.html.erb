@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-8 mx-auto">
       <h2><%= @studio.name %>の詳細ページ</h2>
-      <div class="d-md-flex justify-content-around align-items-center mt-5">
-        <div class="mx-auto">
+      <div class="row mt-5">
+        <div class="col-md-6 text-center">
           <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
         </div>
-        <div>
+        <div class="com-md-6 mx-auto">
           <table class="table table-borderless">
             <tbody>
               <tr>
@@ -35,14 +35,6 @@
               <% end %>
               </tr>
               <tr>
-                <td>店舗名</td>
-                <td><%= @studio.store.name %></td>
-              </tr>
-              <tr>
-                <td>用途</td>
-                <td><%= @studio.use.name %></td>
-              </tr>
-              <tr>
                 <td>個人料金(1h)</td>
                 <td><%= @studio.personal_price %></td>
               </tr>
@@ -53,6 +45,14 @@
               <tr>
                 <td>４名以上の料金(1h)</td>
                 <td><%= @studio.more_price %></td>
+              </tr>
+              <tr>
+                <td>店舗名</td>
+                <td><%= link_to @studio.store.name, store_path(@studio.store) %></td>
+              </tr>
+              <tr>
+                <td>用途</td>
+                <td><%= @studio.use.name %></td>
               </tr>
             </tbody>
           </table>
