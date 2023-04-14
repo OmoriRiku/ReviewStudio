@@ -1,9 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
-    @uses = Use.all
-    @studios = Studio.limit(4).order(created_at: :desc)
+    @studios = Studio.limit(12).order(created_at: :desc)     ## 最新12件を取得し最後に登録した順に並び替える
   end
 
-  def about
+  def about                                                 ## aboutページ
   end
 end
