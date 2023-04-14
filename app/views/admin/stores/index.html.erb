@@ -18,7 +18,7 @@
       <% end %>
     <h3 class="text-center mt-3 page-title">
       <p><%= store.name %></p>
-      <%= link_to associated_result_path(word: store.name, studio_id: store.studios.ids) do %>
+      <%= link_to associated_result_path(word: store.name, studio_id: store.studios.ids), style: "font-size: 12px;" do %>
         <%= store.name %>のスタジオ一覧
       <% end %>
     </h3>
