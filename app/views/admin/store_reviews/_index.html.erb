@@ -1,7 +1,7 @@
 <!--登録された店舗レビュー一覧を表示-->
-<h3><%= store.store_reviews.count %>件のレビュー</h3>
 <div class="row mt-3">
-  <div class="col-md-9 mx-auto">
+  <div class="col-md-6 mx-auto">
+    <h3><%= store.store_reviews.count %>件のレビュー</h3>
     <% store.store_reviews.each do |store_review| %>
     <div class="review-info mt-3">
       <div>

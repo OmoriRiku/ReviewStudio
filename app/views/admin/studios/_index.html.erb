@@ -2,14 +2,14 @@
   <div>
     <!-- blankメソッドでwordに文字列が含まれてるか判定する -->
     <% if word.blank? %>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-cneter justify-content-center">
       <h2>スタジオ一覧</h2>
       <% if admin_signed_in? %>
         <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
       <% end %>
     </div>
     <% else %>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-center">
       <h2><%= word %>のスタジオ一覧</h2>
       <% if admin_signed_in? %>
         <%= link_to '新規作成', new_studio_path, class: "btn btn-success ml-5" %>
