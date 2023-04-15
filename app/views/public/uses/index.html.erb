@@ -6,7 +6,8 @@
       <h2>使用用途追加</h2>
       <div class="row mt-3">
         <div class="col-md-8 mx-auto">
-          <%= form_with model: @use, url:uses_path, method: :post do |f| %>
+          <%= render 'layouts/errors', obj: @use %>
+          <%= form_with model: @use, url: uses_path, method: :post do |f| %>
             <%= render :partial => 'form', :locals => { :f => f } %>
           <% end %>
         </div>
@@ -19,10 +20,10 @@
           <tbody>
             <% @uses.each do |use| %>
             <tr>
-              <td><%= use.name %></td>
+              <td><%= link_to use.name, associated_result_path(word: use.name, studio_id: use.studios.ids) %></td>
               <% if admin_signed_in? %>
                 <td>
-                  <%= link_to '編集する', edit_use_path(use) %>
+                  <%= link_to '編集する', use_path(use) %>
                 </td>
               <% end %>
             </tr>

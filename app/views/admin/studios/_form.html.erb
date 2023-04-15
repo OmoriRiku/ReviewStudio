@@ -10,16 +10,16 @@
         <td><%= f.file_field :studio_image, accept: 'image/*', class: "form-control-file" %></td>
       </tr>
       <tr>
-        <td><%= f.label :store_id, '店舗名', class: "col-form-label" %></td>
-        <td><%= f.select :store_id, @store, {}, { class: "custom-select" } %></td>
+        <td><%= f.label :store_id, '店舗', class: "col-form-label" %></td>
+        <td><%= f.select :store_id, Store.all.map{ |store| [store.name, store.id] }, { include_blank:"-- 選択してください --" }, { class: "custom-select" } %></td>
       </tr>
       <tr>
-        <td><%= f.label :use_id, '用途名', class: "col-form-label" %></td>
-        <td><%= f.select :use_id, @use, {}, { class: "custom-select" } %></td>
+        <td><%= f.label :use_id, '使用用途', class: "col-form-label" %></td>
+        <td><%= f.select :use_id, Use.all.map{ |use| [use.name, use.id] }, { include_blank:"-- 選択してください --" }, { class: "custom-select" } %></td>
       </tr>
       <tr>
         <td><%= f.label :introduction, '説明', class: "col-form-label" %></td>
-        <td class="studio-textarea"><%= f.text_area :introduction, placeholder: "スタジオの特徴などを記入してください", class: "form-control", style: "height: 100%;" %></td>
+        <td class="studio-textarea"><%= f.text_area :introduction, placeholder: "スタジオの説明を入力してください", class: "form-control", style: "height: 100%;" %></td>
       </tr>
       <tr>
         <td><%= f.label :personal_price, '個人料金(1h)', class: "col-form-label" %></td>
