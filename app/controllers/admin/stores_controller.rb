@@ -22,6 +22,7 @@ class Admin::StoresController < ApplicationController
 
   def show ## 詳細ページ
     @studios = @store.studios.all
+    @studios = Studio.order(params[:sort])
   end
 
   def edit ## 編集ページ

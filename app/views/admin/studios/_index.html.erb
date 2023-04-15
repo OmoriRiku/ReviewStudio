@@ -7,7 +7,7 @@
         <th>個人料金</th>
         <th>3名料金</th>
         <th>4名料金</th>
-        <th>用途</th>
+        <th>使用用途</th>
         <th>店舗名</th>
       </tr>
     </thead>
@@ -15,9 +15,9 @@
       <% studios.each do |studio| %>
       <tr>
         <td><%= link_to studio.name, studio_path(studio) %></td>
-        <td><%= studio.personal_price %></td>
-        <td><%= studio.three_price %></td>
-        <td><%= studio.more_price %></td>
+        <td><%= studio.personal_price.to_s(:delimited) %>円</td>
+        <td><%= studio.three_price.to_s(:delimited) %>円</td>
+        <td><%= studio.more_price.to_s(:delimited) %>円</td>
         <td><%= link_to studio.use.name, associated_result_path(word: studio.use.name, studio_id: studio.use.studios.ids) %></td>
         <td><%= link_to studio.store.name, store_path(studio.store) %></td>
       </tr>
