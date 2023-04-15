@@ -17,10 +17,6 @@
       </script>
     </tr>
     <tr>
-      <td><%= f.label :use_id, '使用用途', class: "col-form-label" %></td>
-      <td><%= f.select :use_id, Use.all.map { |use| [use.name, use.id] }, { include_blank:"選択してください" }, { class: "custom-select w-50" } %></td>
-    </tr>
-    <tr>
       <td><%= f.label :number_studio, '利用人数', class: "col-form-label" %></td>
       <td><%= f.select :number_studio, *[1..10], { include_blank:"選択してください" }, { class: "custom-select w-50" } %></td>
     </tr>

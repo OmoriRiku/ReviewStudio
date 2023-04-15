@@ -30,6 +30,6 @@ class Admin::StudioReviewsController < ApplicationController
   private
   
   def studio_review_params ##  ストロングパラメーター
-    params.require(:studio_review).permit(:studio_id, :use_id, :rate, :number_studio, :comment)   ## idの紐付けを行わないカラムを指定する
+    params.require(:studio_review).permit(:studio_id, :rate, :number_studio, :comment)   ## idの紐付けを行わないカラムを指定する
   end
 end
