@@ -1,4 +1,6 @@
 class Studio < ApplicationRecord
+  validates :use_id, presence: true
+  validates :store_id, presence: true
   validates :name, presence: true ## スタジオ名のバリデーション、未入力時エラー
   validates :introduction, presence: true, length: { maximum: 400, message: '400文字以内で入力してください' } ## スタジオの説明文のバリデーション、未入力時、４００時以上はエラー
   validates :personal_price, presence: true, numericality: true ## 個人料金のバリデーション、未入力、半角数字で入力しなければエラー

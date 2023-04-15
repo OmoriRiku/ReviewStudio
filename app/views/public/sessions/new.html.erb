@@ -32,13 +32,11 @@
       <h3 class="page-title">会員登録がお済みでない方</h3>
       <small class="pl-5 pt-3"><%= render "public/shared/links" %>から新規登録をお願いします</small>
     </div>
-    <!-- ゲストログイン用 -->
-    </div>
-    <div class="row mt-5">
-      <div class="col-md-6 mx-auto">
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6 mx-auto">
       <%= link_to 'ゲストログイン（ユーザー用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
       <%= link_to 'ゲストログイン（管理者用）', admin_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-      </div>
     </div>
   </div>
 </div>
