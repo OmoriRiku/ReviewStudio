@@ -1,9 +1,9 @@
 class Studio < ApplicationRecord
   validates :name, presence: true ## スタジオ名のバリデーション、未入力時エラー
   validates :introduction, presence: true, length: { maximum: 400, message: 'は400文字以内で入力してください' } ## スタジオの説明文のバリデーション、未入力時、４００時以上はエラー
-  validates :personal_price, length: { in: 3..5, message: 'は100~10,000以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 個人料金のバリデーション、100~10,000、半角文字で入力しなければエラー
-  validates :three_price, length: { in: 3..6, message: 'は100~100,000以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 3名料金のバリデーション、100~100,000、半角文字で入力しなければエラー
-  validates :more_price, length: { in: 3..6, message: 'は100~100,000以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 4名以上料金のバリデーション、100~100,000、半角文字で入力しなければエラー
+  validates :personal_price, length: { in: 3..5, message: 'は3桁~5桁以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 個人料金のバリデーション、100~10,000、半角文字で入力しなければエラー
+  validates :three_price, length: { in: 3..6, message: 'は3桁~6桁以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 3名料金のバリデーション、100~100,000、半角文字で入力しなければエラー
+  validates :more_price, length: { in: 3..6, message: 'は3桁~6桁以内で入力してください' }, numericality: { only_integer: true, message: 'は半角文字で入力してください' } ## 4名以上料金のバリデーション、100~100,000、半角文字で入力しなければエラー
   
   
   has_one_attached :studio_image # スタジオの写真のカラム追加
