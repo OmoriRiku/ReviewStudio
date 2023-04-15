@@ -1,7 +1,10 @@
 <!-- 店舗の詳細 -->
 <div class="container">
   <div class="mt-5 pb-5 border-bottom">
-    <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
+    <p>料金が安い順
+      <%= link_to '個人料金', store_path(@store, sort: 'personal_price ASC') %> | <%= link_to '３名料金', store_path(@store, sort: 'three_price ASC') %> | <%= link_to '4名以上の料金', store_path(@store, sort: 'more_price ASC') %>
+    </p>
+    <%= render 'admin/studios/index', studios: @store.studios %>
   </div>
   <div class="mt-5 border-bottom pb-5">
     <h2 class="text-center"><%= @store.name %>の詳細</h2>

@@ -24,15 +24,15 @@
             </tr>
             <tr>
               <td>個人料金(1h)</td>
-              <td><%= @studio.personal_price %></td>
+              <td><%= @studio.personal_price.to_s(:delimited) %>円</td>
             </tr>
             <tr>
               <td>3名料金(1h)</td>
-              <td><%= @studio.three_price %></td>
+              <td><%= @studio.three_price.to_s(:delimited) %>円</td>
             </tr>
             <tr>
               <td>４名以上の料金(1h)</td>
-              <td><%= @studio.more_price %></td>
+              <td><%= @studio.more_price.to_s(:delimited) %>円</td>
             </tr>
             <tr>
               <td>店舗名</td>
