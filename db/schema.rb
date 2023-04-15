@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2023_04_14_074954) do
     t.text "introduction", null: false
     t.integer "personal_price", null: false
     t.integer "three_price", null: false
-    t.integer "more_price", null: false
+    t.integer "three_price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,27 @@
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td><%= f.label :rate, '評価' %></td>
+      <td><small id="post-raty"></small></td>
+        <script>
+        document.addEventListener("turbolinks:load", function() {    //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+          let elem = document.querySelector('#post-raty');           //  htmlのid=post-ratyから取得する
+          elem.textContent = '';                                     //  ratyの星が増え続けるバグ回避
+          let opt = {                                                //  ratyのオプション
+              starOn: '<%= asset_path('star-on.png') %>',            //  黄色の星をassets/imagesフォルダから読み込む
+              starOff: '<%= asset_path('star-off.png') %>',          //  白色の星をassets/imagesフォルダから読み込む
+              scoreName: 'store_review[rate]',                       //  カラムの指定
+          };
+          raty(elem,opt);                                            //  変数をraty.jsに
+        });
+        </script>
+    </tr>
+    <tr>
+      <td><%= f.label :comment, 'レビュー本文', class: "col-form-label" %></td>
+      <td class="review-textarea"><%= f.text_area :comment, placeholder: '店舗利用時の感想やスタッフへのメッセージをお願いいたします', class: "form-control", style: "height: 100%;" %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="text-center mt-3">
+  <%= f.submit 'レビューを投稿する', class: "btn btn-success" %>
+</div>

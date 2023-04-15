@@ -2,7 +2,7 @@
   <tbody>
     <tr>
       <td><%= f.label :name, '用途名', class: "col-form-label" %></td>
-      <td><%= f.text_field :name, class: "form-control" %></td>
+      <td><%= f.text_field :name, placeholder: '個人練習', class: "form-control" %></td>
       <td>
       <% if local_assigns[:edit_flag].present? %>
         <%= f.submit '変更を保存する', class: "btn btn-success" %>

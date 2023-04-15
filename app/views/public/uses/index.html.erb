@@ -6,7 +6,8 @@
       <h2>使用用途追加</h2>
       <div class="row mt-3">
         <div class="col-md-8 mx-auto">
-          <%= form_with model: @use, url:uses_path, method: :post do |f| %>
+          <%= render 'layouts/errors', obj: @use %>
+          <%= form_with model: @use, url: uses_path, method: :post do |f| %>
             <%= render :partial => 'form', :locals => { :f => f } %>
           <% end %>
         </div>
