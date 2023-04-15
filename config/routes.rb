@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  devise_scope :end_user do
+    post 'users/guest_sign_in', to: 'users/sessions#user_guest_sign_in'
+  end
   ## ファイルパスをpublic/... へ
   #  urlを任意に指定する
   scope module: :public do
@@ -29,6 +33,10 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
+  
+  devise_scope :admin do
+    post 'admin/guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
+  end
   
   ## ファイルパスをadmin/...へ
   #  urlを任意に指定する

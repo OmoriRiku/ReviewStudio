@@ -1,11 +1,19 @@
 <%= render 'layouts/main_visual' %>
+<%= render 'layouts/flash' %>
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-3">
+      <% unless admin_signed_in? || end_user_signed_in? %>
+        <%= link_to 'ゲストログイン（ユーザー用）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+      <% end %>
+      <% unless end_user_signed_in? || admin_signed_in? %>
+        <%= link_to 'ゲストログイン（管理者用）', admin_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+      <% end  %>
       <%= render 'layouts/side' %>
     </div>
     <div class="col-md-9 mx-auto">
-      <h2 class="text-center">スタジオ一覧(最新12件)</h2>
+      <!-- ゲストログイン用 -->
+      <h2 class="text-center">スタジオ一覧(最新8件)</h2>
       <div class="d-flex flex-wrap justify-content-around">
       <% @studios.each do |studio| %>
         <div class="mt-5">

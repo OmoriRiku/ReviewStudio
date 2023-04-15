@@ -2,7 +2,6 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   ## deviseのストロングパラメーター用の記述
-  #  deviseの機能が使われる前にconfigure_permitted_parametersメソッドを実行する
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   protected

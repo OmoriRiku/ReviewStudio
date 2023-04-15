@@ -1,81 +1,83 @@
+<!-- スタジオの詳細ページ -->
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 mx-auto">
-      <h2><%= @studio.name %>の詳細ページ</h2>
-      <div class="row mt-5">
-        <div class="col-md-6 text-center">
-          <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
-        </div>
-        <div class="com-md-6 mx-auto">
-          <table class="table table-borderless">
-            <tbody>
-              <tr>
-                <td>スタジオ名</td>
-                <td><%= @studio.name %></td>
-              </tr>
-              <tr>
-              <% unless @studio.studio_reviews.average(:rate) == nil %>
-              <tr>
-                <td>平均評価</td>
-                <td id="studio_avarage-raty"></td>
-                <script>
-                    document.addEventListener("turbolinks:load", function() {
-                        let studio_avarage_elm = document.querySelector('#studio_avarage-raty');
-                        studio_avarage_elm.textContent = '';
-                        let studio_avarage_val = {
-                            starOn: '<%= asset_path('star-on.png') %>',
-                            starOff: '<%= asset_path('star-off.png') %>',
-                            readOnly: true,
-                            score: <%= (@studio.studio_reviews.average(:rate)).round %>,
-                        };
-                        raty(studio_avarage_elm,studio_avarage_val);
-                    });
-                </script>
-              </tr>
-              <% end %>
-              </tr>
-              <tr>
-                <td>個人料金(1h)</td>
-                <td><%= @studio.personal_price %></td>
-              </tr>
-              <tr>
-                <td>3名料金(1h)</td>
-                <td><%= @studio.three_price %></td>
-              </tr>
-              <tr>
-                <td>４名以上の料金(1h)</td>
-                <td><%= @studio.more_price %></td>
-              </tr>
-              <tr>
-                <td>店舗名</td>
-                <td><%= link_to @studio.store.name, store_path(@studio.store) %></td>
-              </tr>
-              <tr>
-                <td>用途</td>
-                <td><%= @studio.use.name %></td>
-              </tr>
-            </tbody>
-          </table>
-          <% if admin_signed_in? %>
-            <div class="d-flex justify-content-around">
-              <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
-              <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger" %>
-            </div>
-          <% end %>
-        </div>
+  <div class="pb-4 border-bottom">
+    <h2 class="text-center"><%= @studio.name %>の詳細ページ</h2>
+    <div class="row mt-5">
+      <div class="col-md-6 text-center">
+        <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
       </div>
-      <div class="mt-5">
-        <h2>スタジオの特徴</h2>
-        <p class="mt-5"><%= @studio.introduction %></p>
-      </div>
-      <% if end_user_signed_in? %>
-      <div class="text-center mt-5">
-        <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
-        </div>
-      <% end %>
-      <div class="mt-5">
-        <%= render 'admin/studio_reviews/index', studio: @studio %>
+      <div class="com-md-6 mx-auto">
+        <table class="table table-bordered" style="width: 560px">
+          <tbody>
+            <tr>
+              <td style="width: 200px;">スタジオ名</td>
+              <td><%= @studio.name %></td>
+            </tr>
+            <tr>
+            <!-- レビューのrateカラムが登録されていなければ平均評価を表示しない -->
+            <% unless @studio.studio_reviews.average(:rate) == nil %>
+            <tr>
+              <td>平均評価</td>
+              <td id="studio_avarage-raty"></td>
+              <script>
+                  document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+                      let studio_avarage_elm = document.querySelector('#studio_avarage-raty'); // htmlのid属性から取得する
+                      studio_avarage_elm.textContent = ''; //  ratyの星が増え続けるバグ回避
+                      let studio_avarage_val = { // ratyのオプションを指定
+                          starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
+                          starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
+                          readOnly: true, // 読み込み専用(編集はできないようにするため)
+                          score: <%= (@studio.studio_reviews.average(:rate)).round %>, // レビューの平均値
+                      };
+                      raty(studio_avarage_elm,studio_avarage_val); // raty.jsへ渡す変数
+                  });
+              </script>
+            </tr>
+            <% end %>
+            </tr>
+            <tr>
+              <td>店舗名</td>
+              <td><%= link_to @studio.store.name, store_path(@studio.store) %></td>
+            </tr>
+            <tr>
+              <td>個人料金(1h)</td>
+              <td><%= @studio.personal_price %></td>
+            </tr>
+            <tr>
+              <td>3名料金(1h)</td>
+              <td><%= @studio.three_price %></td>
+            </tr>
+            <tr>
+              <td>４名以上の料金(1h)</td>
+              <td><%= @studio.more_price %></td>
+            </tr>
+            <tr>
+              <td>使用用途</td>
+              <td><%= @studio.use.name %></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 管理者の場合編集、削除のリンクを表示 -->
+        <% if admin_signed_in? %>
+          <div class="d-flex justify-content-start">
+            <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
+            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger ml-3" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+  <div class="mt-5 pb-4 border-bottom">
+    <h2 class="text-center">スタジオの特徴</h2>
+    <p class="mt-3 mx-auto" style="width: 60%;"><%= @studio.introduction %></p>
+  </div>
+  <div class="mt-5 mb-3">
+    <%= render 'admin/studio_reviews/index', studio: @studio %>
+  </div>
+  <!-- ユーザーがログインしている場合、レビュー作成を表示 -->
+  <% if end_user_signed_in? %>
+    <div class="text-center">
+      <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

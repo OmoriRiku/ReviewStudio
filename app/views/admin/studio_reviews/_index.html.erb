@@ -1,7 +1,7 @@
 <!-- スタジオレビュー -->
-<h3><%= studio.studio_reviews.count %>件のレビュー</h3>
 <div class="row mt-5">
-  <div class="col-md-9 mx-auto">
+  <div class="col-md-6 mx-auto">
+    <h3><%= studio.studio_reviews.count %>件のレビュー</h3>
     <% studio.studio_reviews.each do |studio_review| %>
       <div class="review-position">
         <div class="review-info">
