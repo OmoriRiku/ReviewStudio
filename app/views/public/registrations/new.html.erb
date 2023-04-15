@@ -5,7 +5,7 @@
       <h2 class="page-title">新規登録</h2>
     </div>
     <!-- ユーザー新規登録用フォーム -->
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-8 mx-auto">
       <%= form_with model: @end_user, url: end_user_registration_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <table class="table table-borderless">
@@ -23,13 +23,17 @@
               <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
             </tr>
             <tr>
-              <td><%= f.label :password, 'パスワード', class: "col-form-label" %></td>
+              <td><%= f.label :password, 'パスワード(6文字以上)', class: "col-form-label" %></td>
               <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password_confirmation, 'パスワード(確認用)', class: "col-form-label" %></td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></td>
             </tr>
           </tbody>
         </table>
         <div class="text-center">
-          <%= f.submit "新規登録", class: "btn btn-primary" %>
+          <%= f.submit "新規登録", class: "btn btn-success" %>
         </div>
       <% end %>
     </div>

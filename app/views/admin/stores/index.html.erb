@@ -1,9 +1,10 @@
+<!-- 店舗一覧表示 -->
 <div class="container">
   <div class="row">
-    <!-- 店舗一覧表示 -->
     <div class="col-md-10 mx-auto">
       <div class="d-flex justify-content-center align-items-center">
         <h2>店舗一覧</h2>
+        <!-- 管理者がログインしている場合、新規登録のリンクを表示する -->
         <% if admin_signed_in? %>
           <%= link_to '新規登録', new_store_path, class: "btn btn-success ml-5" %>
         <% end %>
