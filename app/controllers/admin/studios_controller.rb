@@ -18,6 +18,7 @@ class Admin::StudiosController < ApplicationController
 
   def index ## 一覧ページ
     @studios = Studio.all # スタジオの全データ取得
+    @studios = Studio.order(params[:sort])
   end
 
   def show ## 詳細ページ

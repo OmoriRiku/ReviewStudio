@@ -1,4 +1,13 @@
 <!-- スタジオの一覧ページ -->
 <div class="container">
+  <div class="d-flex justify-content-center align-items-center">
+    <h2 class="mb-0">スタジオ一覧</h2>
+    <% if admin_signed_in? %>
+      <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
+    <% end %>
+  </div>
+  <p>料金が安い順
+    <%= link_to '個人料金', studios_path(sort: 'personal_price ASC') %> | <%= link_to '３名料金', studios_path(sort: 'three_price ASC') %> | <%= link_to '4名以上の料金', studios_path(sort: 'more_price ASC') %>
+  </p>
   <%= render 'index', word: @word, studios: @studios %>
 </div>

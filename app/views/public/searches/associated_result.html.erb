@@ -1,1 +1,9 @@
-<%= render 'admin/studios/index', studios: @result, word: @word %>
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center">
+    <h2 class="mb-0"><%= @word %>のスタジオ一覧</h2>
+    <% if admin_signed_in? %>
+      <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
+    <% end %>
+  </div>
+  <%= render 'admin/studios/index', studios: @result, word: @word %>
+</div>
