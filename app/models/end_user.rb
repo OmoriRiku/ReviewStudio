@@ -16,7 +16,7 @@ class EndUser < ApplicationRecord
   profile_image.variant(resize_to_fill: [width, height]).processed # 縦横比を維持せずリサイズする
   end
 
-  def self.guest ## ゲストログイン用(Users::SessionsControllerの.guestメソッド)
+  def self.user_guest ## ゲストログイン用(Users::SessionsControllerの.guestメソッド)
     find_or_create_by!(name: 'guestuser',email: 'guest@example.com') do |user| # EndUserにguestuserの名前があるか判定しなければ新規作成する
       user.password = SecureRandom.urlsafe_base64 # パスワードをランダムに作成してpasswordカラムへ代入
       user.name = "guestuser" # ユーザー名、guestuserをuser.nameカラムへ代入する

@@ -16,6 +16,14 @@ class Studio < ApplicationRecord
   studio_image.variant(resize_to_fill: [width, height]).processed # 縦横比を維持せず指定の値にリサイズする
   end
   
+  def self.search_for(word) # 検索窓から入力された値を引数に取る
+    where('name like ?', "%" + "#{word}" + "%" ) # 曖昧検索を行いwhere句で絞り込む
+  end
+  
+  def self.associated_studios(studio_ids) # link_toで指定されたidの配列を引数に取る
+    where(id: studio_ids) # 渡されたスタジオのid配列をwhere句で絞り込む
+  end
+  
   has_many    :studio_reviews, dependent: :destroy # スタジオレビューとのリレーション。スタジオはスタジオレビューを複数持っている。スタジオが削除されるとスタジオレビューも削除される
   
   belongs_to  :store # 店舗とのリレーション。店舗はスタジオを複数持っている
