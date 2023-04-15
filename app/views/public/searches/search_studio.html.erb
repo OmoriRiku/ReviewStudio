@@ -1,1 +1,14 @@
-<%= render 'admin/studios/index', word: @word, studios: @result %>
+<div class="container">
+  <% if @result.exists? %>
+  <div class="d-flex justify-content-center align-items-center">
+    <h2 class="mb-0"><%= @word %>の検索結果</h2>
+    <% if admin_signed_in? %>
+      <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
+    <% end %>
+  </div>
+  <p><%= @result.count %>件ヒットしました。</p>
+  <%= render 'admin/studios/index', word: @word, studios: @result %>
+  <% else %>
+    <p class="text-center"><%= @word %>の検索結果はありませんでした。</p>
+  <% end %>
+</div>

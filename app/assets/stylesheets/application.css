@@ -54,6 +54,13 @@ header {
 }
 
 /*
+ * error
+ */
+.error-list {
+  list-style-type: none;
+}
+
+/*
  * main-visual
  */
  

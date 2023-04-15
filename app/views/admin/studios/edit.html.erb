@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-md-9 mx-auto">
       <h2 class="text-center">スタジオ編集</h2>
+      <%= render 'layouts/errors', obj: @studio %>
       <%= form_with model: @studio, url: studio_path(@studio), method: :patch do |f| %>
         <%= render :partial => 'form', :locals => { :f => f, :edit_flag => true } %>
       <% end %>

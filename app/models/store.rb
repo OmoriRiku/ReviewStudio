@@ -1,7 +1,7 @@
 class Store < ApplicationRecord
-  validates :name, presence: { message: 'を入力してください' }, uniqueness: true, length: {maximum: 20} ## 店舗名のバリデーション、２０文字以上の場合エラー                     
-  validates :introduction, presence: true, length: { maximum: 800 } ## 店舗説明文のバリデーション、500文字以上、未入力時エラー
-  validates :telephone_number, numericality: { only_integer: true, message: 'は半角文字で入力してください' }, length: { maximum: 15 } ## 店舗電話番号のバリデーション、半角英数字、5~15文字以内でなければエラー
+  validates :name, presence: true, uniqueness: true, length: { maximum: 20 } ## 店舗名のバリデーション、２０文字以上の場合エラー                     
+  validates :introduction, presence: true, length: { maximum: 800 } ## 店舗説明文のバリデーション、800文字以上、未入力時エラー
+  validates :telephone_number, numericality: { only_integer: true, message: 'は半角文字で入力してください' }, length: { maximum: 15 } ## 店舗電話番号のバリデーション、半角英数字、15文字以内でなければエラー
   validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'はハイフンを含めた半角文字で入力してください' } ## 店舗の郵便番号のバリデーション、半角文字、７文字でなければエラー
   validates :address, presence: true, length: { maximum: 50 } ## 店舗の住所のバリデーション、未入力、50文字以上はエラー
   validates :store_image, presence: { message: 'を選択してください' } ## 店舗の写真のバリデーション

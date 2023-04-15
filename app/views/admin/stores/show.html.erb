@@ -1,6 +1,9 @@
 <!-- 店舗の詳細 -->
 <div class="container">
-  <div class="border-bottom pb-5">
+  <div class="mt-5 pb-5 border-bottom">
+    <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
+  </div>
+  <div class="mt-5 border-bottom pb-5">
     <h2 class="text-center"><%= @store.name %>の詳細</h2>
     <div class="mt-5 row">
       <div class="col-md-6 text-center">
@@ -62,9 +65,6 @@
   <div class="mt-5 pb-5 border-bottom">
     <h2 class="text-center">店舗の説明文</h2>
     <p class="mt-3 mx-auto" style="width: 60%;"><%= @store.introduction %></p>
-  </div>
-  <div class="mt-5 pb-5 border-bottom">
-    <%= render 'admin/studios/index', word: @store.name, studios: @studios %>
   </div>
   <!-- レビュー一覧 -->
   <div class="mt-5">
