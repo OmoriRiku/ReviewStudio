@@ -1,0 +1,14 @@
+<!-- スタジオレビュー新規作成 -->
+<div class="container">
+  <h2 class="text-center"><%= @studio.name %>のレビュー新規作成</h2>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="mt-5">
+      <%= render 'layouts/errors', obj: @studio_review %>
+      <%= form_with model: [@studio, @studio_review], url: studio_studio_reviews_path, method: :post do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
