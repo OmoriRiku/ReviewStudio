@@ -1,0 +1,20 @@
+<!-- レビューのrateカラムが登録されていなければ平均評価を表示しない -->
+<% unless store.store_reviews.average(:rate) == nil %>
+<tr>
+  <td>平均評価</td>
+  <td id="store_avarage-raty"></td>
+</tr>
+<script>
+document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+    let store_avarage_elm = document.querySelector('#store_avarage-raty'); // htmlのid属性から取得する
+    store_avarage_elm.textContent = ''; //  ratyの星が増え続けるバグ回避
+    let store_avarage_val = { // ratyのオプションを指定
+        starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
+        starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
+        readOnly: true, // 読み込み専用(編集はできないようにするため)
+        score: <%= (store.store_reviews.average(:rate)).round %>, // レビューの平均値
+    };
+    raty(store_avarage_elm,store_avarage_val); // raty.jsへ渡す変数
+});
+</script>
+<% end %>
