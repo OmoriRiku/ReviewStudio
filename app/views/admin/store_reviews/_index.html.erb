@@ -1,0 +1,38 @@
+<!--登録された店舗レビュー一覧を表示-->
+<div class="row mt-3">
+  <div class="col-md-6 mx-auto">
+    <h3><%= store.store_reviews.count %>件のレビュー</h3>
+    <% store.store_reviews.each do |store_review| %>
+    <div class="review-info mt-3">
+      <div>
+        <%= image_tag store_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
+        <small class="review-userinfo"><%= store_review.end_user.name %></small>
+      </div>
+      <div class="store_review-rate">
+        <small class="review-raty" id="show_raty<%= store_review.id %>"></small>
+      <script>
+      document.addEventListener("turbolinks:load", function() {
+          let show = document.querySelector('#show_raty<%= store_review.id %>');
+          show.textContent = '';
+          let val = {
+              starOn: '<%= asset_path('star-on.png') %>',
+              starOff: '<%= asset_path('star-off.png') %>',
+              readOnly: true,
+              score: <%= store_review.rate %>,
+          };
+          raty(show,val);
+      });
+      </script>
+      </div>
+      </div>
+      <div class="review-text">
+        <p><%= store_review.comment %></p>
+        <% if current_end_user == store_review.end_user || admin_signed_in? %>
+        <div class="text-right">
+          <%= link_to '削除する', store_store_review_path(store_review.store, store_review), method: :delete, class: "btn btn-danger" %>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
