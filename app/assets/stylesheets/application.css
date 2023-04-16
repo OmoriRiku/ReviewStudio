@@ -41,16 +41,6 @@
 header {
   color: #fff;
 }
- 
-.logo {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-}
-
-.logo-img {
-  background-image: url("/images/logo.png");
-}
 
 /*
  * error
