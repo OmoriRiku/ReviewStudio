@@ -20,8 +20,8 @@ class Studio < ApplicationRecord
     where('name like ?', "%" + "#{word}" + "%" ) # 曖昧検索を行いwhere句で絞り込む
   end
   
-  def self.associated_studios(studio_ids) # link_toで指定されたidの配列を引数に取る
-    where(id: studio_ids) # 渡されたスタジオのid配列をwhere句で絞り込む
+  def self.associated_studios(studio_ids, sort) # link_toで指定されたidの配列を引数に取る
+    where(id: studio_ids).order(sort) # 渡されたスタジオのid配列をwhere句で絞り込む
   end
   
   has_many    :studio_reviews, dependent: :destroy # スタジオレビューとのリレーション。スタジオはスタジオレビューを複数持っている。スタジオが削除されるとスタジオレビューも削除される

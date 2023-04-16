@@ -1,9 +1,16 @@
 <div class="container">
-  <div class="d-flex align-items-center justify-content-center">
-    <h2 class="mb-0"><%= @word %>のスタジオ一覧</h2>
-    <% if admin_signed_in? %>
-      <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
-    <% end %>
-  </div>
-  <%= render 'admin/studios/index', studios: @result, word: @word %>
+  <% if @result.exists? %>
+    <div class="d-flex align-items-center justify-content-center">
+      <h2 class="mb-0"><%= @word %>のスタジオ一覧</h2>
+      <% if admin_signed_in? %>
+        <%= link_to '新規登録', new_studio_path, class: "btn btn-success ml-5" %>
+      <% end %>
+    </div>
+    <p>料金が安い順
+      <%= link_to '個人料金', associated_result_path(word: @word, studio_id: @studio_ids, sort: 'personal_price ASC') %> | <%= link_to '３名料金', associated_result_path(word: @word, studio_id: @studio_ids, sort: 'three_price ASC') %> | <%= link_to '4名以上の料金', associated_result_path(word: @word, studio_id: @studio_ids, sort: 'more_price ASC') %>
+    </p>
+    <%= render 'admin/studios/index', studios: @result, word: @word %>
+  <% else %>
+    <p class="text-center"><%= @word %>のスタジオは登録されていません</p>
+  <% end %>
 </div>
