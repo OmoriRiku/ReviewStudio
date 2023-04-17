@@ -2,7 +2,10 @@
 <div class="row mt-3">
   <div class="col-md-6 mx-auto">
     <h3><%= store.store_reviews.count %>件のレビュー</h3>
-    <% store.store_reviews.each do |store_review| %>
+    <p>
+      <%= link_to '新着順', store_path(sort_store_review: "created_at DESC") %> | <%= link_to '評価の高い順', store_path(sort_store_review: "rate DESC") %> | <%= link_to '評価の低い順', store_path(sort_store_review: "rate ASC") %>
+    </p>
+    <% sort_store_review.each do |store_review| %>
     <div class="review-info mt-3">
       <div>
         <%= image_tag store_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>

@@ -1,6 +1,8 @@
 class Admin::StoresController < ApplicationController
   before_action :is_admin_login_authenticate,     only: [:new, :create, :edit, :update, :destroy]
   before_action :set_store,                       only: [:show, :edit, :update, :destroy]
+  before_action :sort_store_review,               only: [:show]
+  before_action :sort_studio_price,               only: [:show]
 
   def new ## 新規登録ページ
     @store = Store.new # ビューへ渡すための空のモデルオブジェクト生成
@@ -41,6 +43,16 @@ class Admin::StoresController < ApplicationController
   end
   
   private
+  
+  def sort_studio_price ## 店舗別スタジオ料金のソート機能(価格の安い順：個人、３名、４名以上の料金)
+    sort_studio_price = params[:sort_studio_price] # なにをソートするのかといった情報をlink_toから受け取る(例：personal_price ASCなど)
+    @sort_studio_price = @store.studios.order(sort_studio_price) # ORDER句でソートした情報をshow.htmlで呼び出し用の変数へ代入する
+  end
+  
+  def sort_store_review ## レビューのソート機能（新着順、評価の高い順、評価の低い順）
+    sort_store_review = params[:sort_store_review]  # なにをソートするのかといった情報をlink_toから受け取る(例：rate DESCなど)
+    @sort_store_review = @store.store_reviews.order(sort_store_review)  # ORDER句でソートした情報をshow.htmlで呼び出し用の変数へ代入する
+  end
   
   def set_store ## Storeモデルから特定のIDを取得するメソッド
     @store = Store.find(params[:id])

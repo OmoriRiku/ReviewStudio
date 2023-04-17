@@ -59,7 +59,7 @@
     <p class="mt-3 mx-auto" style="width: 60%;"><%= @studio.introduction %></p>
   </div>
   <div class="mt-5 mb-3">
-    <%= render 'admin/studio_reviews/index', studio: @studio %>
+    <%= render 'admin/studio_reviews/index', studio: @studio, sort_studio_review: @sort_studio_review %>
   </div>
   <!-- ユーザーがログインしている場合、レビュー作成を表示 -->
   <% if end_user_signed_in? %>

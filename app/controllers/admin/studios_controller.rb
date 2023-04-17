@@ -1,6 +1,7 @@
 class Admin::StudiosController < ApplicationController
   before_action :is_admin_login_authenticate,             only: [:new, :create, :edit, :update, :destroy]
   before_action :set_studio,                              only: [:show, :edit, :update, :destroy]
+  before_action :sort_studio_review,                      only: [:show]
   
   def new ## 新規作成ページ
     @studio = Studio.new #  ビューへ渡すための空のモデルオブジェクト生成
@@ -44,6 +45,11 @@ class Admin::StudiosController < ApplicationController
   end
   
   private
+  
+  def sort_studio_review ## レビューのソート機能（新着順、評価の高い順、評価の低い順）
+    sort_studio_review = params[:sort_studio_review]  # なにをソートするのかといった情報をlink_toから受け取る(例：rate DESCなど)
+    @sort_studio_review = @studio.studio_reviews.order(sort_studio_review)  # ORDER句でソートした情報をshow.htmlで呼び出し用の変数へ代入する
+  end
   
   def set_studio ## 特定のスタジオのidを取得するメソッド
     @studio = Studio.find(params[:id])

@@ -2,7 +2,10 @@
 <div class="row mt-5">
   <div class="col-md-6 mx-auto">
     <h3><%= studio.studio_reviews.count %>件のレビュー</h3>
-    <% studio.studio_reviews.each do |studio_review| %>
+    <p>
+      <%= link_to '新着順', studio_path(sort_studio_review: "created_at DESC") %> | <%= link_to '評価の高い順', studio_path(sort_studio_review: "rate DESC") %> | <%= link_to '評価の低い順', studio_path(sort_studio_review: "rate ASC") %>
+    </p>
+    <% sort_studio_review.each do |studio_review| %>
       <div class="review-position">
         <div class="review-info">
           <%= image_tag studio_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
