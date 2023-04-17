@@ -6,13 +6,14 @@
       <%= link_to '新着順', studio_path(sort_studio_review: "created_at DESC") %> | <%= link_to '評価の高い順', studio_path(sort_studio_review: "rate DESC") %> | <%= link_to '評価の低い順', studio_path(sort_studio_review: "rate ASC") %>
     </p>
     <% sort_studio_review.each do |studio_review| %>
-      <div class="review-position">
-        <div class="review-info">
+      <div>
+        <div>
           <%= image_tag studio_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
-          <small class="review-userinfo"><%= studio_review.end_user.name %></small>
+          <small><%= studio_review.end_user.name %></small>
+          <small>利用人数：<%= studio_review.number_studio %>人</small>
         </div>
-        <div class="review-sub-info">
-        <small class="review-raty" id="studio-show-raty<%= studio_review.id %>"></small>
+        <div>
+        <small id="studio-show-raty<%= studio_review.id %>"></small>
         <script>
           document.addEventListener("turbolinks:load", function() {
               let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
@@ -26,10 +27,9 @@
               raty(studio_show_elm,studio_show_val);
           });
         </script>
-        <small class="review-sub-text">利用人数：<%= studio_review.number_studio %>人</small>
         </div>
       </div>
-      <p class="review-text"><%= studio_review.comment %></p>
+      <p class="mt-3"><%= studio_review.comment %></p>
       <!-- 管理者、もしくはレビュー投稿者に削除ボタンを表示 -->
       <% if current_end_user == studio_review.end_user || admin_signed_in? %>
       <div class="text-right">

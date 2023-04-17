@@ -22,10 +22,9 @@
    font-family: Hiragino Kaku Gothic Pro,ヒラギノ角ゴ ProN W3,Hiragino Kaku Gothic ProN,メイリオ,sans-serif;
  }
  
-.sp-only {
-   display: none;
- }
- 
+ /*
+  * end_user.管理者のタイトル
+  */
  .page-title {
    font-size: 20px;
  }
@@ -33,14 +32,6 @@
  .bg-wrapper {
   object-fit: cover;
  }
- 
- /*
-  * header
-  */
- 
-header {
-  color: #fff;
-}
 
 /*
  * error
@@ -88,7 +79,7 @@ header {
 }
 
 .store-textarea {
-  height: 400px;
+  height: 200px;
 }
 
 /*
@@ -101,53 +92,4 @@ header {
 
 .studio-textarea {
   height: 200px;
-}
-
-/*
- * review
- */
-
-.review-info {
-  position: relative;
-}
-
-.review-userinfo {
-  position: absolute;
-  top: -2px;
-  left: 58px;
-  font-size: 16px;
-}
-
-.review-position {
-  position:relative;
-}
-
-.store_review-rate {
-  position: absolute;
-  top: 20px;
-  left: 58px;
-}
-
-.review-sub-info {
-  position: absolute;
-  top: 16px;
-  left: 58px;
-}
-
-.review-sub-text {
-  padding-left: 20px;
-}
-
-.review-raty > img {
-  width: 15px;
-  height: 15px;
-}
-
-.review-text {
-  padding-left: 58px;
-  margin-top: 15px;
-}
-
-.review-textarea {
-  height: 250px;
 }
