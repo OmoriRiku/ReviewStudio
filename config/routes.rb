@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+  # ゲストログイン機能
+  # URL /users/guest_sign_in
   devise_scope :end_user do
     post 'users/guest_sign_in', to: 'users/sessions#user_guest_sign_in'
   end
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   
+  ## ゲストログイン機能
+  #. admin/guest_sign_in
   devise_scope :admin do
     post 'admin/guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
   end

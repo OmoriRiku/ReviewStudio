@@ -65,6 +65,8 @@ gem 'kaminari','~> 1.2.1'
 gem 'rails-i18n'
 gem 'devise-i18n'
 
+gem 'jquery-rails'
+
 # 環境変数
 gem "dotenv-rails"
 group :production do
