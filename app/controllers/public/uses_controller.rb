@@ -12,8 +12,8 @@ class Public::UsesController < ApplicationController
     if @use.save # データを保存する
       redirect_to uses_path # 一覧ページへ遷移する
     else
-      @uses = Use.all
-      render :index
+      @uses = Use.all # renderする際にUseモデルの全データを渡す
+      render :index # 保存できなければindexページを表示する
     end
   end
 
@@ -24,7 +24,7 @@ class Public::UsesController < ApplicationController
     if @use.update(use_params) # ストロングパラメーターを引数にアップデート
       redirect_to uses_path # 一覧ページへ遷移する
     else
-      render :edit
+      render :edit # 保存できなければeditページを表示する
     end
   end
   

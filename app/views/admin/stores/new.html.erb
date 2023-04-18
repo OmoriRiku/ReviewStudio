@@ -5,9 +5,9 @@
     <div class="col-md-9 mx-auto">
       <%= render 'layouts/errors', obj: @store %>
       <div class="mt-5">
-      <%= form_with model: @store, url: stores_path, method: :post do |f| %>
-        <%= render :partial => 'form', :locals => { :f => f } %>
-      <% end %>
+        <%= form_with model: @store, url: stores_path, method: :post do |f| %>
+          <%= render :partial => 'form', :locals => { :f => f } %>
+        <% end %>
       </div>
     </div>
   </div>

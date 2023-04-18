@@ -24,4 +24,5 @@ ja:
         comment: 'レビュー本文'
         use: '使用用途'
         number_studio: '利用人数'
-        
+      use:
+        name: '使用用途'

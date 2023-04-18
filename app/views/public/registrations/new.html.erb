@@ -16,11 +16,11 @@
             </tr>
             <tr>
               <td><%= f.label :name, 'ユーザー名', class: "col-form-label" %></td>
-              <td><%= f.text_field :name, autofocus: true, class: "form-control" %></td>
+              <td><%= f.text_field :name, autofocus: true, placeholder: '令和 道子', class: "form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :email, 'メールアドレス', class: "col-form-label" %></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'sample@example.com', class: "form-control" %></td>
             </tr>
             <tr>
               <td><%= f.label :password, 'パスワード(6文字以上)', class: "col-form-label" %></td>
