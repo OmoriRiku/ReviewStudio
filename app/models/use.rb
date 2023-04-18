@@ -1,10 +1,5 @@
 class Use < ApplicationRecord
-  belongs_to  :end_user         ## ユーザーとのリレーション
-                                ## ユーザーは用途を複数持っている
+  validates :name, uniqueness: true, length: { in: 1..20 }   ## 使用用途名のバリデーション、未入力時、同じ使用用途名、２０文字以上はエラー
   
-  has_many    :studios          ## スタジオとのリレーション
-                                ## スタジオは用途を複数持っている
-  
-  has_many    :studio_reviews   ## スタジオのレビューとのリレーション
-                                ## スタジオレビューは用途を複数持っている
+  has_many :studios # スタジオとのリレーション。使用用途はスタジオを複数持っている
 end

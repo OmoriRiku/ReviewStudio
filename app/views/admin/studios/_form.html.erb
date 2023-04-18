@@ -1,0 +1,47 @@
+<div class="mt-3">
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td><%= f.label :name, 'スタジオ名', class: "col-form-label" %></td>
+        <td><%= f.text_field :name, placeholder: "music studio", class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :studio_image, 'スタジオの写真', class: "col-form-label" %></td>
+        <td><%= f.file_field :studio_image, accept: 'image/*', class: "form-control-file" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :store_id, '店舗', class: "col-form-label" %></td>
+        <td><%= f.select :store_id, Store.all.map{ |store| [store.name, store.id] }, { include_blank:"-- 選択してください --" }, { class: "custom-select" } %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :use_id, 'スタジオの使用用途', class: "col-form-label" %></td>
+        <td><%= f.select :use_id, Use.all.map{ |use| [use.name, use.id] }, { include_blank:"-- 選択してください --" }, { class: "custom-select" } %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :introduction, 'スタジオの説明', class: "col-form-label" %></td>
+        <td class="studio-textarea"><%= f.text_area :introduction, placeholder: "スタジオの説明を入力してください", class: "form-control", style: "height: 100%;" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :personal_price, '個人料金(1h)', class: "col-form-label" %></td>
+        <td><%= f.number_field :personal_price, placeholder: "600", class: "form-control w-25" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :three_price, '3名料金(1h)', class: "col-form-label" %></td>
+        <td><%= f.number_field :three_price, placeholder: "1650", class: "form-control w-25" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :more_price, '４名以上の料金(1h)', class: "col-form-label" %></td>
+        <td><%= f.number_field :more_price, placeholder: "2200", class: "form-control w-25" %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% if local_assigns[:edit_flag].present? %>
+    <div class="text-center">
+      <%= f.submit '変更を保存する', class: "btn btn-success" %>
+    </div>
+  <% else %>
+    <div class="text-center">
+      <%= f.submit '新規登録', class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
