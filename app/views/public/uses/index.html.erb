@@ -23,7 +23,7 @@
               <td><%= link_to use.name, associated_result_path(word: use.name, studio_id: use.studios.ids) %></td>
               <% if admin_signed_in? %>
                 <td>
-                  <%= link_to '編集する', use_path(use) %>
+                  <%= link_to '編集する', edit_use_path(use) %>
                 </td>
               <% end %>
             </tr>

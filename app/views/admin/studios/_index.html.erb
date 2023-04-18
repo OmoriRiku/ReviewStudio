@@ -1,5 +1,5 @@
 <!-- スタジオ一覧表示 -->
-<div class="mt-3">
+<div class="mt-3 personal-price three-price more-price">
   <table class="table text-center table-bordered">
     <thead class="bg-light">
       <tr>
@@ -8,18 +8,34 @@
         <th>3名料金</th>
         <th>4名料金</th>
         <th>使用用途</th>
-        <th>店舗名</th>
+        <% unless request.fullpath.match(/.+store.+/) %>
+          <th>店舗名</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% studios.each do |studio| %>
       <tr>
         <td><%= link_to studio.name, studio_path(studio) %></td>
-        <td><%= studio.personal_price.to_s(:delimited) %>円</td>
-        <td><%= studio.three_price.to_s(:delimited) %>円</td>
-        <td><%= studio.more_price.to_s(:delimited) %>円</td>
+        <% if request.fullpath.match(/.+personal_price.+/) %>
+          <td class="studio-price-color"><%= studio.personal_price.to_s(:delimited) %>円</td>
+        <% else %>
+          <td><%= studio.personal_price.to_s(:delimited) %>円</td>
+        <% end %>
+        <% if request.fullpath.match(/.+three_price.+/) %>
+          <td class="studio-price-color"><%= studio.three_price.to_s(:delimited) %>円</td>
+        <% else %>
+          <td><%= studio.three_price.to_s(:delimited) %>円</td>
+        <% end %>
+        <% if request.fullpath.match(/.+more_price.+/) %>
+          <td class="studio-price-color"><%= studio.more_price.to_s(:delimited) %>円</td>
+        <% else %>
+          <td><%= studio.more_price.to_s(:delimited) %>円</td>
+        <% end %>
         <td><%= link_to studio.use.name, associated_result_path(word: studio.use.name, studio_id: studio.use.studios.ids) %></td>
-        <td><%= link_to studio.store.name, store_path(studio.store) %></td>
+        <% unless request.fullpath.match(/.+store.+/) %>
+          <td><%= link_to studio.store.name, store_path(studio.store) %></td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

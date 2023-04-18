@@ -12,7 +12,7 @@ class Public::SearchesController < ApplicationController
   def associated_result
     @word = params[:word] # ビューから渡された単語をインスタンス変数へ格納する
     @studio_ids = params[:studio_id] # アソシエーションを辿ってスタジオのidを配列で受け取りインスタンス変数へ格納する
-    @sort = params[:sort]
+    @sort = params[:sort] # ビューからソートする文字列を取得する（例：created_at: :descなど）
     @result = Studio.associated_studios(@studio_ids, @sort) # associated_studiosは自作メソッド(studio.rbファイルへ)
   end
 end
