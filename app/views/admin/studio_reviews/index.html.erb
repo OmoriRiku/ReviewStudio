@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h3><%= @studio.name %>のレビュー一覧</h3>
+      <% @studio_reviews.each do |studio_review| %>
+        <div>
+          <div>
+            <%= image_tag studio_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
+            <small><%= studio_review.end_user.name %></small>
+            <small>利用人数：<%= studio_review.number_studio %>人</small>
+          </div>
+          <div>
+            <small id="studio-show-raty<%= studio_review.id %>"></small>
+            <script>
+              document.addEventListener("turbolinks:load", function() {
+                  let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
+                  studio_show_elm.textContent = '';
+                  let studio_show_val = {
+                      starOn: '<%= asset_path('star-on.png') %>',
+                      starOff: '<%= asset_path('star-off.png') %>',
+                      readOnly: true,
+                      score: <%= studio_review.rate %>,
+                  };
+                  raty(studio_show_elm,studio_show_val);
+              });
+            </script>
+          </div>
+        </div>
+        <p class="mt-3"><%= studio_review.comment %></p>
+        <!-- 管理者、もしくはレビュー投稿者に削除ボタンを表示 -->
+        <% if current_end_user == studio_review.end_user || admin_signed_in? %>
+          <div class="text-right">
+            <%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, class: "btn btn-danger"%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,10 @@
     <% end %>
   </div>
   <!-- スタジオ一覧表示 -->
-<div class="mt-3">
-  <p>料金が安い順
-    <%= link_to '個人料金', studios_path(sort: 'personal_price ASC'), remote: true %> | <%= link_to '３名料金', studios_path(sort: 'three_price ASC'), remote: true %> | <%= link_to '4名以上の料金', studios_path(sort: 'more_price ASC'), remote: true %>
-  </p>
-  <%= render 'index', studios: @studios %>
+  <div class="mt-3">
+    <p>料金が安い順
+      <%= link_to '個人料金', studios_path(sort: 'personal_price ASC'), remote: true %> | <%= link_to '３名料金', studios_path(sort: 'three_price ASC'), remote: true %> | <%= link_to '4名以上の料金', studios_path(sort: 'more_price ASC'), remote: true %>
+    </p>
+    <%= render 'index', studios: @studios %>
+  </div>
 </div>
-
