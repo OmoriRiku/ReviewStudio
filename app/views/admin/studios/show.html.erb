@@ -1,0 +1,68 @@
+<!-- スタジオの詳細ページ -->
+<div class="container">
+  <div class="pb-4 border-bottom">
+    <h2 class="text-center"><%= @studio.name %>の詳細ページ</h2>
+    <div class="row mt-5">
+      <div class="col-md-6 text-center">
+        <%= image_tag @studio.get_studio_image(300,300), class: "rounded" %>
+      </div>
+      <div class="com-md-6 mx-auto">
+        <table class="table table-bordered" style="width: 560px">
+          <tbody>
+            <tr>
+              <td style="width: 200px;">スタジオ名</td>
+              <td><%= @studio.name %></td>
+            </tr>
+            <% unless @studio.studio_reviews.average(:rate) == nil %>
+              <tr>
+                <td>平均評価</td>
+                <td id="studio_avarage-raty"></td>
+                <%= render 'average_rate', studio: @studio %>
+              </tr>
+            <% end %>
+            <tr>
+              <td>個人料金(1h)</td>
+              <td><%= @studio.personal_price.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <td>3名料金(1h)</td>
+              <td><%= @studio.three_price.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <td>４名以上の料金(1h)</td>
+              <td><%= @studio.more_price.to_s(:delimited) %>円</td>
+            </tr>
+            <tr>
+              <td>店舗名</td>
+              <td><%= link_to @studio.store.name, store_path(@studio.store) %></td>
+            </tr>
+            <tr>
+              <td>使用用途</td>
+              <td><%= link_to @studio.use.name, associated_result_path(word: @studio.use.name, studio_id: @studio.use.studios.ids) %></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 管理者の場合編集、削除のリンクを表示 -->
+        <% if admin_signed_in? %>
+          <div class="d-flex justify-content-start">
+            <%= link_to '編集する', edit_studio_path(@studio), class: "btn btn-success" %>
+            <%= link_to '削除する', studio_path(@studio), method: :delete, data: { confirm: "スタジオを削除してもよろしいですか？" }, class: "btn btn-danger ml-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 pb-4 border-bottom">
+    <h2 class="text-center">スタジオの説明</h2>
+    <p class="mt-3 mx-auto" style="width: 60%;"><%= @studio.introduction %></p>
+  </div>
+  <div class="mt-5 mb-3">
+    <%= render 'admin/studio_reviews/index', studio: @studio, sort_studio_review: @sort_studio_review %>
+  </div>
+  <!-- ユーザーがログインしている場合、レビュー作成を表示 -->
+  <% if end_user_signed_in? %>
+    <div class="text-center">
+      <%= link_to 'スタジオレビューを作成する', new_studio_studio_review_path(@studio), class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

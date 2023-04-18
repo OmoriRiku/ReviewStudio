@@ -1,0 +1,29 @@
+<!-- 店舗一覧表示 -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex justify-content-center align-items-center">
+        <h2>店舗一覧</h2>
+        <!-- 管理者がログインしている場合、新規登録のリンクを表示する -->
+        <% if admin_signed_in? %>
+          <%= link_to '新規登録', new_store_path, class: "btn btn-success ml-5" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-wrap justify-content-around">
+    <% @stores.each do |store| %>
+    <div class="mt-5">
+      <%= link_to store_path(store) do %>
+        <%= image_tag store.get_store_image(245,245), class: "bg-wrapper" %>
+      <% end %>
+      <h3 class="text-center mt-3 page-title">
+        <p><%= store.name %></p>
+        <%= link_to associated_result_path(word: store.name, studio_id: store.studios.ids), style: "font-size: 12px;" do %>
+          <%= store.name %>のスタジオ一覧
+        <% end %>
+      </h3>
+    </div>
+    <% end %>
+  </div>
+</div>

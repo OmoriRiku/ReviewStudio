@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    attributes:
+      store:
+        name: '店舗名'
+        introduction: '店舗の説明文'
+        telephone_number: '店舗の電話番号'
+        post_code: '店舗の郵便番号'
+        address: '店舗の住所'
+        store_image: '店舗の写真'
+      studio:
+        use: '使用用途'
+        store: '店舗'
+        name: 'スタジオ名'
+        introduction: '店舗の説明文'
+        personal_price: '個人料金(1h)'
+        three_price: '3名料金(1h)'
+        more_price: '4名以上の料金(1h)'
+      store_review:
+        rate: '評価'
+        comment: 'レビュー本文'
+      studio_review:
+        rate: '評価'
+        comment: 'レビュー本文'
+        use: '使用用途'
+        number_studio: '利用人数'
+      use:
+        name: '使用用途'

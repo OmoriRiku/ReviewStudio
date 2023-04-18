@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>ReviewStudio</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="turbolinks-visit-control" content="reload">
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="font-family">
+    <%= render 'layouts/header' %>
+    <main>
+      <% unless current_page?(root_path) || current_page?(about_path) %>
+        <%= render 'layouts/flash' %>
+      <% end %>
+        <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
