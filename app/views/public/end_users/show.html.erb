@@ -1,0 +1,4 @@
+<%= image_tag @user.get_profile_image(300,300) %>
+<%= @user.name %>
+<%= @user.email %>
+<%= link_to '編集する', edit_end_user_path(@user) %>
