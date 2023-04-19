@@ -1,12 +1,12 @@
 <!--登録された店舗レビュー一覧を表示-->
-<% sort_store_review.each do |store_review| %>
-  <div>
-    <div>
-      <%= image_tag store_review.end_user.get_profile_image(40,40), class: "rounded-circle" %>
-      <smal><%= store_review.end_user.name %></small>
-    </div>
-    <div>
-      <small id="show_raty<%= store_review.id %>"></small>
+<table class="table table-borderless">
+  <tbody>
+  <% sort_store_review.each do |store_review| %>
+    <tr>
+      <td><%= image_tag store_review.end_user.get_profile_image(40,40), class: "rounded-circle" %> <%= store_review.end_user.name %></td>
+    </tr>
+    <tr>
+      <td id="show_raty<%= store_review.id %>"></td>
       <script>
       document.addEventListener("turbolinks:load", function() {
           let show = document.querySelector('#show_raty<%= store_review.id %>');
@@ -20,14 +20,18 @@
           raty(show,val);
       });
       </script>
-    </div>
-  </div>
-  <div>
-  <p class="mt-3"><%= store_review.comment %></p>
+    </tr>
+    <tr>
+      <td class="mt-3"><%= store_review.comment %></td>
+    </tr>
+    <!-- ログインしているユーザーが投稿のユーザーと一致しているか、管理者がログインしているか判定する -->
     <% if current_end_user == store_review.end_user || admin_signed_in? %>
-      <div class="text-right">
+    <tr>
+      <td class="text-right">
         <%= link_to '削除する', store_store_review_path(store_review.store, store_review), method: :delete, class: "btn btn-danger" %>
-      </div>
+      </td>
+    </tr>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+  </tbody>
+</table>

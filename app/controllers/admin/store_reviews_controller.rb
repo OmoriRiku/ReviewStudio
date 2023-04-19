@@ -22,10 +22,9 @@ class Admin::StoreReviewsController < ApplicationController
   def destroy ## 削除機能
     @store = Store.find(params[:store_id]) #  レビューを削除する店舗を特定する
     @store_review = @store.store_reviews.find(params[:id]) #  該当のレビューを見つける(リレーションを辿って特定する)
-    if @store_review.destroy #  レビューを削除する
-      flash[:notice] = 'レビューを投稿しました' # フラッシュメッセージの表示
-      redirect_to store_path(@store) # 店舗の詳細ページへ遷移する
-    end
+    @store_review.destroy #  レビューを削除する
+    flash[:notice] = 'レビューを削除しました' # フラッシュメッセージの表示
+    redirect_to store_path(@store) # 店舗の詳細ページへ遷移する
   end
   
   private

@@ -39,7 +39,7 @@ class Admin::StoresController < ApplicationController
 
   def destroy ## 削除機能
     @store.destroy #  店舗を削除する
-    redirect_to stores_path # 店舗の一覧ページへ遷移する
+    redirect_to stores_path, notice: "店舗を削除しました" # 店舗の一覧ページへ遷移する
   end
   
   private

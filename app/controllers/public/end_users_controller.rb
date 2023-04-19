@@ -3,10 +3,10 @@ class Public::EndUsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   
   def index
-    @users = EndUser.all
+    @users = EndUser.all # ユーザーの全データをビューへ渡す
   end
     
-  def show
+  def show ## ユーザー詳細ページ
   end
   
   def edit ## ユーザー編集ページの表示

@@ -17,6 +17,7 @@
               <td><%= f.label :name, 'ユーザー名', class: "col-form-label" %></td>
               <td><%= f.text_field :name, autofocus: true, class: "form-control" %></td>
             </tr>
+            <% if admin_signed_in? %>
             <tr>
               <td><%= f.label 'ユーザーステータス' %></td>
               <td>
@@ -26,6 +27,7 @@
                 <%= f.label :is_active, '退会' %>
               </td>
             </tr>
+            <% end %>
           </tbody>
         </table>
         <div class="text-center">

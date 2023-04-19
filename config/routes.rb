@@ -19,7 +19,9 @@ Rails.application.routes.draw do
     
     # ユーザー編集用のルーティング
     # URL /users/...
-    resources :end_users, only: [:index, :show, :edit, :update], path: 'users'
+    resources :end_users, only: [:index, :show, :edit, :update], path: 'users' do
+      resources :store_reviews, only: [:index, :destroy]
+    end
     
     # トップページのルーティング
     # URL /
