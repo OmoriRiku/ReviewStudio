@@ -8,7 +8,7 @@
           <% @studio_reviews.each do |studio_review| %>
             <tr>
               <td>
-                スタジオ名：<%= studio_review.studio.name %>
+                スタジオ名：<%= link_to studio_review.studio.name, studio_path(studio_review.studio) %>
               </td>
             </tr>
             <tr>
