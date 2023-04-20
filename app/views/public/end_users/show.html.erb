@@ -1,0 +1,43 @@
+<!-- ユーザーの詳細ページ -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <h2><%= @user.name %>の詳細</h2>
+      <div class="text-center">
+        <p><%= image_tag @user.get_profile_image(300,300) %></p>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>ユーザー名</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <% if @user.is_active == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td>退会</td>
+              <% end %>
+            </tr>
+            <tr>
+              <td><%= link_to '店舗レビュー', end_user_store_reviews_path(@user) %></td>
+              <td><%= link_to 'スタジオレビュー', end_user_studio_reviews_path(@user) %></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- ログインしているユーザーとページを開いているユーザーが一致しているか、もしくは管理者がログインしているかで表示判定 -->
+        <% if @user == current_end_user || admin_signed_in? %>
+          <%= link_to '編集する', edit_end_user_path(@user), class: "btn btn-success" %>
+        <% end %>
+        <!-- ログインしているユーザーとページを開いているユーザーが一致しているかで表示判定 -->
+        <% if @user == current_end_user %>
+          <%= link_to '退会する', confirm_unsubscribe_path(@user), class: "btn btn-danger ml-3" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

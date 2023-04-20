@@ -34,6 +34,7 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[6.1]
       
       ## ユーザー名
       t.string :name, null: false
+      t.boolean :is_active, default: false, null: false
 
 
       t.timestamps null: false

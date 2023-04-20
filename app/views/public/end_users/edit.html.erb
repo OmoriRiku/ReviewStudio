@@ -1,11 +1,10 @@
+<!-- ユーザーの編集ページ -->
 <div class="container">
   <div class="row">
-    <!--表題 -->
     <div class="col-md-10 ml-auto">
       <h2 class="page-title">ユーザーの編集</h2>
     </div>
-    <!-- ユーザーの編集フォーム -->
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-8 mx-auto">
       <%= form_with model: @user, url:end_user_path(@user), method: :patch do |f| %>
         <table class="table table-borderless">
           <tbody>
@@ -17,6 +16,17 @@
               <td><%= f.label :name, 'ユーザー名', class: "col-form-label" %></td>
               <td><%= f.text_field :name, autofocus: true, class: "form-control" %></td>
             </tr>
+            <% if admin_signed_in? %>
+            <tr>
+              <td><%= f.label 'ユーザーステータス' %></td>
+              <td>
+                <%= f.radio_button :is_active, false %>
+                <%= f.label :is_active, '有効' %>
+                <%= f.radio_button :is_active, true %>
+                <%= f.label :is_active, '退会' %>
+              </td>
+            </tr>
+            <% end %>
           </tbody>
         </table>
         <div class="text-center">

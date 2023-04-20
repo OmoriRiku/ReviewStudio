@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <% if @studio_reviews.exists? %>
+        <h3><%= @user.name %>のスタジオレビュー</h3>
+        <table class="table table-borderless">
+          <tbody>
+          <% @studio_reviews.each do |studio_review| %>
+            <tr>
+              <td>
+                スタジオ名：<%= studio_review.studio.name %>
+              </td>
+            </tr>
+            <tr>
+              <td id="studio-show-raty<%= studio_review.id %>"></td>
+              <script>
+                document.addEventListener("turbolinks:load", function() {
+                    let studio_show_elm = document.querySelector('#studio-show-raty<%= studio_review.id %>');
+                    studio_show_elm.textContent = '';
+                    let studio_show_val = {
+                        starOn: '<%= asset_path('star-on.png') %>',
+                        starOff: '<%= asset_path('star-off.png') %>',
+                        readOnly: true,
+                        score: <%= studio_review.rate %>,
+                    };
+                    raty(studio_show_elm,studio_show_val);
+                });
+              </script>
+            </tr>
+            <tr>
+              <td class="mt-3"><%= studio_review.comment %></td>
+            </tr>
+            <!-- 管理者、もしくはレビュー投稿者に削除ボタンを表示 -->
+            <% if current_end_user == studio_review.end_user || admin_signed_in? %>
+              <tr class="text-right">
+                <td><%= link_to '削除する', end_user_studio_review_path(studio_review.end_user, studio_review), method: :delete, class: "btn btn-danger"%></td>
+              </tr>
+            <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <h2 class="text-center">
+          <%= @user.name %>はスタジオレビューを<br />投稿していません。
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,21 +1,57 @@
 <header>
   <div class="container mb-3">
-    <div class="d-xl-flex justify-content-between">
+    <div class="d-flex justify-content-between">
       <!-- ロゴの表示 -->
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <%= link_to 'ReviewStudio', root_path, class: "navbar-brand" %>
       </nav>
       <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <!--ハンバーガーメニュー-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <!--管理者がログインしていればログアウトを表示する-->
-            <% if admin_signed_in? || end_user_signed_in? %>
-              <!-- topページ以外のヘッダー -->
-              <% unless current_page?(root_path) %>
+        <ul class="navbar-nav">
+          <!--管理者がログインしていればログアウトを表示する-->
+          <% if admin_signed_in? || end_user_signed_in? %>
+            <!-- topページ以外のヘッダー -->
+            <% unless current_page?(root_path) %>
+            <li class="nav-item">
+              <%= link_to 'スタジオ一覧', studios_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '店舗一覧', stores_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '使用用途一覧', uses_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ユーザー一覧', end_users_path, class: "nav-link text-dark" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'about', about_path, class: "nav-link text-dark" %>
+            </li>
+            <% end %>
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-danger" %>
+            </li>
+          <!--ユーザーがログインしていれば、ログアウト、ユーザーの写真を表示する-->
+          <% elsif end_user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: "nav-link text-danger" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to end_user_path(current_end_user) do %>
+                <%= image_tag current_end_user.get_profile_image(40,40), class: "rounded-circle" %>
+              <% end %>
+            </li>
+          <% end %>
+            <!-- ログインしていない場合のヘッダー -->
+          <% else %>
+            <!-- topページ以外のヘッダー -->
+          <li class="nav-item">
+            <%= link_to 'ログイン', new_end_user_session_path, class: "nav-link text-primary" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '新規登録', new_end_user_registration_path, class: "nav-link text-success" %>
+          </li>
+            <% unless current_page?(root_path) %>
               <li class="nav-item">
                 <%= link_to 'スタジオ一覧', studios_path, class: "nav-link text-dark" %>
               </li>
@@ -25,52 +61,16 @@
               <li class="nav-item">
                 <%= link_to '使用用途一覧', uses_path, class: "nav-link text-dark" %>
               </li>
-              <li>
+              <li class="nav-item">
+                <%= link_to 'ユーザー一覧', end_users_path, class: "nav-link text-dark" %>
+              </li>
+              <li class="mav-item">
                 <%= link_to 'about', about_path, class: "nav-link text-dark" %>
               </li>
-              <% end %>
-            <% if admin_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-danger" %>
-              </li>
-            <!--ユーザーがログインしていれば、ログアウト、ユーザーの写真を表示する-->
-            <% elsif end_user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: "nav-link text-danger" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to edit_end_user_path(current_end_user) do %>
-                  <%= image_tag current_end_user.get_profile_image(40,40), class: "rounded-circle" %>
-                <% end %>
-              </li>
-            <% end %>
-              <!-- ログインしていない場合のヘッダー -->
-            <% else %>
-              <!-- topページ以外のヘッダー -->
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_end_user_session_path, class: "nav-link text-primary" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_end_user_registration_path, class: "nav-link text-success" %>
-            </li>
-              <% unless current_page?(root_path) %>
-                <li class="nav-item">
-                  <%= link_to 'スタジオ一覧', studios_path, class: "nav-link text-dark" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to '店舗一覧', stores_path, class: "nav-link text-dark" %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to '使用用途一覧', uses_path, class: "nav-link text-dark" %>
-                </li>
-                <li>
-                  <%= link_to 'about', about_path, class: "nav-link text-dark" %>
-                </li>
-            <% end %>
           <% end %>
-            <!-- ヘッダーここまで -->
-          </ul>
-        </div>
+        <% end %>
+          <!-- ヘッダーここまで -->
+        </ul>
       </nav>
     </div>
     <!--スタジオ検索フォーム-->
