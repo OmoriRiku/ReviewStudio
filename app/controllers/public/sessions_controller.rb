@@ -3,6 +3,7 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :reject_inactive_user, only: [:create]
   before_action :is_login_redirect_back, only: [:create]
+  before_action :after_sign_out_path_for, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -26,6 +27,13 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
+  protected
+  
+  def after_sign_out_path_for(resource)
+    flash[:notice] = "ログアウトしました"
+    new_end_user_session_path
+  end
   
   ## 退会処理が行われたユーザーがログインできなくなるメソッド
   def reject_inactive_user

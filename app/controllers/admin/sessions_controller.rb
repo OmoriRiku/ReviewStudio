@@ -2,6 +2,19 @@
 
 class Admin::SessionsController < Devise::SessionsController
   before_action :is_login_redirect_back, only: [:new, :create]
+  before_action :after_sign_in_path_for, only: [:create]
+  
+  protected
+  
+  def after_sign_in_path_for(resource)
+    flash[:notice] = "管理者でログインしました"
+    root_path
+  end
+  
+  def after_sign_out_path_for(resource)
+    flash[:notice] = "ログアウトしました"
+    new_admin_session_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
