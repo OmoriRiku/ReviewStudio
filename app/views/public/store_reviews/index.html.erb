@@ -7,7 +7,7 @@
           <tbody>
           <% @store_reviews.each do |store_review| %>
             <tr>
-              <td>店舗名：<%= store_review.store.name %></td>
+              <td>店舗名：<%= link_to store_review.store.name, store_path(store_review.store) %></td>
             </tr>
             <tr>
               <td id="show_raty<%= store_review.id %>"></td>
