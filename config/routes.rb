@@ -19,9 +19,15 @@ Rails.application.routes.draw do
     
     # ユーザー編集用のルーティング
     # URL /users/...
-    resources :end_users, only: [:index, :show, :edit, :update], path: 'users' do
+    resources :end_users, only: [:index, :show, :edit, :update], path: 'users/' do
       resources :store_reviews, only: [:index, :destroy]
+      resources :studio_reviews, only: [:index, :destroy]
     end
+    
+    ## ユーザーの退会機能用ルーティング
+    #  URL /users/:id/....
+    get 'users/:id/unsubscribe' => 'end_users#unsubscribe', as: 'confirm_unsubscribe'
+    patch 'users/:id/withdraw' => 'end_users#withdraw', as: 'withdraw_user'
     
     # トップページのルーティング
     # URL /

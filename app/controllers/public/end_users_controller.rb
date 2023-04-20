@@ -1,6 +1,7 @@
 class Public::EndUsersController < ApplicationController
-  before_action :set_user,          only: [:show, :edit, :update]
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :set_user,          only: [:show, :edit, :update, :unsubscribe, :withdraw]
+  before_action :ensure_guest_user, only: [:edit, :unsubscribe]
+  before_action :ensure_user_admin, only: [:edit, :unsubscribe]
   
   def index
     @users = EndUser.all # ユーザーの全データをビューへ渡す
@@ -17,12 +18,28 @@ class Public::EndUsersController < ApplicationController
     redirect_to end_user_path(@user) # 編集後はユーザーの詳細ページへ遷移する
   end
   
+  def unsubscribe
+  end
+  
+  def withdraw
+    @user.update(is_active: true)
+    reset_session
+    redirect_to root_path, notice: "退会いたしました。"
+  end
+  
   private
   
   def ensure_guest_user ## ゲストユーザーで編集ページへ遷移しようとした場合、トップページへ遷移する
     @user = EndUser.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to root_path, notice: 'ゲストユーザーは編集できません'
+      redirect_to end_user_path(current_end_user), notice: 'ゲストユーザーは編集できません'
+    end
+  end
+  
+  def ensure_user_admin
+    @user = EndUser.find(params[:id])
+    unless @user == current_end_user || admin_signed_in?
+      redirect_to end_user_path(@user), notice: "他のユーザーの編集はできません。"
     end
   end
   

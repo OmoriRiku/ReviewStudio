@@ -1,3 +1,4 @@
+<!-- ユーザーの詳細ページ -->
 <div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto">
@@ -23,12 +24,19 @@
               <% end %>
             </tr>
             <tr>
-              <td><%= link_to '店舗レビュー一覧', end_user_store_reviews_path(@user) %></td>
-              <td>スタジオレビュー一覧</td>
+              <td><%= link_to '店舗レビュー', end_user_store_reviews_path(@user) %></td>
+              <td><%= link_to 'スタジオレビュー', end_user_studio_reviews_path(@user) %></td>
             </tr>
           </tbody>
         </table>
-        <%= link_to '編集する', edit_end_user_path(@user), class: "btn btn-success" %>
+        <!-- ログインしているユーザーとページを開いているユーザーが一致しているか、もしくは管理者がログインしているかで表示判定 -->
+        <% if @user == current_end_user || admin_signed_in? %>
+          <%= link_to '編集する', edit_end_user_path(@user), class: "btn btn-success" %>
+        <% end %>
+        <!-- ログインしているユーザーとページを開いているユーザーが一致しているかで表示判定 -->
+        <% if @user == current_end_user %>
+          <%= link_to '退会する', confirm_unsubscribe_path(@user), class: "btn btn-danger ml-3" %>
+        <% end %>
       </div>
     </div>
   </div>

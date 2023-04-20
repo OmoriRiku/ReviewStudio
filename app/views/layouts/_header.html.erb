@@ -37,7 +37,7 @@
               <%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class: "nav-link text-danger" %>
             </li>
             <li class="nav-item">
-              <%= link_to edit_end_user_path(current_end_user) do %>
+              <%= link_to end_user_path(current_end_user) do %>
                 <%= image_tag current_end_user.get_profile_image(40,40), class: "rounded-circle" %>
               <% end %>
             </li>

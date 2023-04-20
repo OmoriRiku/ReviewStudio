@@ -1,5 +1,6 @@
+<!-- ユーザーの一覧ページ -->
 <div class="container">
-  <h2>ユーザー一覧</h2>
+  <h2 class="text-center mb-3">ユーザー一覧</h2>
   <table class="table text-center table-bordered">
     <thead class="bg-light">
       <tr>
@@ -15,8 +16,8 @@
         <tr>
           <td><%= user.id %></td>
           <td><%= link_to user.name, end_user_path(user) %></td>
-          <td><%= link_to 'レビュー', end_user_store_reviews_path(user) %></td>
-          <td>スタジオレビュー</td>
+          <td><%= link_to '店舗レビュー', end_user_store_reviews_path(user) %></td>
+          <td><%= link_to 'スタジオレビュー', end_user_studio_reviews_path(user) %></td>
           <% if user.is_active == false %>
             <td class="text-success">有効</td>
           <% else %>
