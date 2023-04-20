@@ -1,6 +1,6 @@
 <!-- 店舗の詳細 -->
 <div class="container">
-  <div class="mt-5 pb-5 border-bottom">
+  <div class="pb-5 border-bottom">
     <h2 class="text-center"><%= @store.name %>のスタジオ一覧</h2>
     <p>料金が安い順
       <%= link_to '個人料金', store_path(sort_studio_price: 'personal_price ASC'), remote: true %> | <%= link_to '３名料金', store_path(sort_studio_price: 'three_price ASC'), remote: true %> | <%= link_to '4名以上の料金', store_path(sort_studio_price: 'more_price ASC'), remote: true %>
@@ -57,7 +57,7 @@
     <div class="row mt-3">
       <div class="col-md-6 mx-auto">
         <h3><%= @store.store_reviews.count %>件のレビュー</h3>
-        <p>
+        <p class="mt-3">
           <%= link_to '新着順', store_path(sort_store_review: "created_at DESC") %> | <%= link_to '評価の高い順', store_path(sort_store_review: "rate DESC") %> | <%= link_to '評価の低い順', store_path(sort_store_review: "rate ASC") %>
         </p>
         <%= render 'admin/store_reviews/index', sort_store_review: @sort_store_review %>

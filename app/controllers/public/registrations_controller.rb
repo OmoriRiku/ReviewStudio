@@ -3,6 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   ## deviseのストロングパラメーター用の記述
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :is_login_redirect_back, only: [:create]
   
   protected
   

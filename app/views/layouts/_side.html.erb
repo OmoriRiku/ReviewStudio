@@ -10,7 +10,16 @@
       <th class="font-weight-normal"><%= link_to '使用用途一覧', uses_path %></th>
     </tr>
     <tr>
+      <th class="font-weight-normal"><%= link_to 'ユーザー一覧', end_users_path %></th>
+    </tr>
+    <tr>
       <th class="font-weight-normal"><%= link_to 'about', about_path %></th>
     </tr>
   </thead>
 </table>
+<% unless admin_signed_in? || end_user_signed_in? %>
+  <%= link_to 'ゲストログイン（ユーザー機能）', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+<% end %>
+<% unless end_user_signed_in? || admin_signed_in? %>
+  <%= link_to 'ゲストログイン（管理者機能）', admin_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+<% end  %>
