@@ -18,7 +18,7 @@ class Admin::StudiosController < ApplicationController
   end
 
   def index ## 一覧ページ
-    @studios = Studio.all # スタジオの全データ取得
+    @studios = Studio.all.page(params[:page]).per(8) # スタジオの全データ取得
     @studios = Studio.order(params[:sort])
   end
 
@@ -42,6 +42,13 @@ class Admin::StudiosController < ApplicationController
       flash[:notice] = 'スタジオを削除しました' # フラッシュメッセージの表示
       redirect_to studios_path # 削除したら一覧ページへ遷移する
     end
+  end
+  
+  def associated_result_studio
+    @word = params[:word] # ビューから渡された単語をインスタンス変数へ格納する
+    @studio_ids = params[:studio_id] # link_toのparamsからスタジオのidを配列で受け取りインスタンス変数へ格納する
+    @sort = params[:sort] # ビューからソートする文字列を取得する（例：created_at: :descなど）、初期値はcrated_at ASC
+    @result = Studio.associated_studios(@studio_ids, @sort) # associated_studiosは自作メソッド(studio.rbファイルへ)
   end
   
   private
