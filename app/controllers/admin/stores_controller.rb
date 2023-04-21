@@ -19,7 +19,7 @@ class Admin::StoresController < ApplicationController
   end
   
   def index ## 一覧ページ
-    @stores = Store.all # 店舗の全データ取得
+    @stores = Store.all.page(params[:page]).per(8) # 店舗の全データを取得したのち、８件ずつページネーション
   end
 
   def show ## 詳細ページ
@@ -42,15 +42,29 @@ class Admin::StoresController < ApplicationController
     redirect_to stores_path, notice: "店舗を削除しました" # 店舗の一覧ページへ遷移する
   end
   
+  def address_search_store  # 分割したキーワードごとに検索するメソッド
+    keyword = params[:word] # 検索フォームから入力された単語をインスタンス変数へ渡す
+    if keyword.present? # keywordに文字が入力されているか判定する
+      @result = [] # 空の配列を生成
+      keyword.split(/[[:blank:]]+/).each do |keyword| # 空白で文字列を分割
+        next if keyword == "" # 入力された文字が空であればスキップする
+        @result += Store.where('address LIKE ?', "%#{keyword}%") # Storeモデルのaddressカラムから該当の文字列を探索し、生成した配列へ代入していく
+      end
+      @result.uniq! # 同じ文字列を配列へ代入しないようにするため
+    else
+      redirect_to request.referer, notice: '検索ワードが入力されていません'
+    end
+  end
+  
   private
   
   def sort_studio_price ## 店舗別スタジオ料金のソート機能(価格の安い順：個人、３名、４名以上の料金)
-    sort_studio_price = params[:sort_studio_price] # なにをソートするのかといった情報をlink_toから受け取る(例：personal_price ASCなど)
+    sort_studio_price = params[:sort_studio_price]# なにをソートするのかといった情報をlink_toから受け取る(例：personal_price ASCなど)
     @sort_studio_price = @store.studios.order(sort_studio_price) # ORDER句でソートした情報をshow.htmlで呼び出し用の変数へ代入する
   end
   
   def sort_store_review ## レビューのソート機能（新着順、評価の高い順、評価の低い順）
-    sort_store_review = params[:sort_store_review]  # なにをソートするのかといった情報をlink_toから受け取る(例：rate DESCなど)
+    sort_store_review = params[:sort_store_review] ||# なにをソートするのかといった情報をlink_toから受け取る(例：rate DESCなど)
     @sort_store_review = @store.store_reviews.order(sort_store_review)  # ORDER句でソートした情報をshow.htmlで呼び出し用の変数へ代入する
   end
   

@@ -73,14 +73,5 @@
         </ul>
       </nav>
     </div>
-    <!--スタジオ検索フォーム-->
-    <div class="header-search-form">
-      <div class="form-inline justify-content-end">
-        <%= form_with url: search_studios_path, method: :get do |f| %>
-          <%= f.text_field :word, placeholder: 'スタジオ名検索', class: "form-control" %>
-          <%= f.submit '検索する', class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
   </div>
 </header>

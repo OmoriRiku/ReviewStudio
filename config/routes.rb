@@ -40,10 +40,6 @@ Rails.application.routes.draw do
     # 用途のルーティング
     # URL /uses/...
     resources :uses, only: [:index, :create, :edit, :update]
-    
-    # 検索用ルーティング
-    get '/search_studios' =>  'searches#search_studio'
-    get '/result_studio'  =>  'searches#associated_result', as: 'associated_result'
   end
   
   # 管理者用
@@ -63,18 +59,23 @@ Rails.application.routes.draw do
   scope module: :admin do
     
     # 店舗のルーティング
-    # 店舗レビューの削除用に入れ子にする
+    # 店舗レビュー用に入れ子にする
     # URL /stores/....
     resources :stores do
       resources :store_reviews, only: [:new, :create, :destroy]
     end
+    # 検索用ルーティング
+    get '/stores_search' =>  'stores#address_search_store'
     
     # スタジオのルーティング
-    # スタジオレビューの削除用に入れ子にする
+    # スタジオレビュー用に入れ子にする
     # URL /studios/...
     resources :studios do
       resources :studio_reviews, only: [:new, :create, :destroy]
     end
+    
+    # アソシエーションで紐づいたすたじおを表示する
+    get '/result_studio'  =>  'studios#associated_result_studio', as: 'associated_result'
     
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
