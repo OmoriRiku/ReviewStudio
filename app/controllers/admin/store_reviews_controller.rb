@@ -13,7 +13,7 @@ class Admin::StoreReviewsController < ApplicationController
     @store_review.store_id = @store.id #  store_idと店舗のidの紐付け
     if @store_review.save #  保存する
       flash[:notice] = 'レビューを投稿しました' # フラッシュメッセージを表示する
-      redirect_to request.referer # データを保存したら店舗の詳細ページへ遷移する
+      redirect_to store_path(@store) # データを保存したら店舗の詳細ページへ遷移する
     else
       render :new # データが保存できなければ新規登録ページを表示する
     end
@@ -24,7 +24,7 @@ class Admin::StoreReviewsController < ApplicationController
     @store_review = @store.store_reviews.find(params[:id]) #  該当のレビューを見つける(リレーションを辿って特定する)
     @store_review.destroy #  レビューを削除する
     flash[:notice] = 'レビューを削除しました' # フラッシュメッセージの表示
-    redirect_to request.referer # 店舗の詳細ページへ遷移する
+    redirect_to store_path(@store) # 店舗の詳細ページへ遷移する
   end
   
   private
