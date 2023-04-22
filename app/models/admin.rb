@@ -4,9 +4,9 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def self.admin_guest ## ゲストログイン用(Users::SessionsControllerの.guestメソッド)
-    find_or_create_by!(email: 'guest@example.com') do |user| # Adminにguest@example.comのemailがあるか判定しなければ新規作成する
-      user.password = SecureRandom.urlsafe_base64 # パスワードをランダムに作成してpasswordカラムへ代入
+  def self.admin_guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
     end
   end
 end

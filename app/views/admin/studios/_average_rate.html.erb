@@ -1,14 +1,20 @@
 <!-- レビューのrateカラムが登録されていなければ平均評価を表示しない -->
-<script>
-    document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
-        let studio_avarage_elm = document.querySelector('#studio_avarage-raty'); // htmlのid属性から取得する
-        studio_avarage_elm.textContent = ''; //  ratyの星が増え続けるバグ回避
-        let studio_avarage_val = { // ratyのオプションを指定
-            starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
-            starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
-            readOnly: true, // 読み込み専用(編集はできないようにするため)
-            score: <%= (studio.studio_reviews.average(:rate)).round %>, // レビューの平均値
-        };
-        raty(studio_avarage_elm,studio_avarage_val); // raty.jsへ渡す変数
-    });
-</script>
+<% unless studio.studio_reviews.average(:rate) == nil %>
+  <tr>
+    <td>平均評価</td>
+    <td id="studio_avarage-raty"></td>
+    <script>
+      document.addEventListener("turbolinks:load", function() { //  turbolinksをリロードする(ratyがページリロードをしなければ表示されないため)
+          let studio_avarage_elm = document.querySelector('#studio_avarage-raty'); // htmlのid属性から取得する
+          studio_avarage_elm.textContent = ''; //  ratyの星が増え続けるバグ回避
+          let studio_avarage_val = { // ratyのオプションを指定
+              starOn: '<%= asset_path('star-on.png') %>', // 黄色の星をassets/imagesフォルダから読み込む
+              starOff: '<%= asset_path('star-off.png') %>', // 白色の星をassets/imagesフォルダから読み込む
+              readOnly: true, // 読み込み専用(編集はできないようにするため)
+              score: <%= (studio.studio_reviews.average(:rate)).round %>, // レビューの平均値
+          };
+          raty(studio_avarage_elm,studio_avarage_val); // raty.jsへ渡す変数
+      });
+    </script>
+  </tr>
+<% end %>

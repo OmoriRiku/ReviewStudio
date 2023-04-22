@@ -1,35 +1,35 @@
 class Admin::StoreReviewsController < ApplicationController
   before_action :authenticate_end_user!, only: [:new, :create]
   
-  def new ##　店舗レビュー新規作成ページ
-    @store = Store.find(params[:store_id]) # レビューする店舗を特定する
-    @store_review = StoreReview.new # ストアレビューのインスタンス作成
+  def new
+    @store = Store.find(params[:store_id])
+    @store_review = StoreReview.new
   end
   
   def create
-    @store = Store.find(params[:store_id]) ## レビューする店舗を特定する
-    @store_review = StoreReview.new(store_review_params) #  ストロングパラメーターを引数に初期化
-    @store_review.end_user_id = current_end_user.id #  end_user_idと現在ログインしているユーザーの紐付け
-    @store_review.store_id = @store.id #  store_idと店舗のidの紐付け
-    if @store_review.save #  保存する
-      flash[:notice] = 'レビューを投稿しました' # フラッシュメッセージを表示する
-      redirect_to store_path(@store) # データを保存したら店舗の詳細ページへ遷移する
+    @store = Store.find(params[:store_id])
+    @store_review = StoreReview.new(store_review_params)
+    @store_review.end_user_id = current_end_user.id
+    @store_review.store_id = @store.id
+    if @store_review.save
+      flash[:notice] = 'レビューを投稿しました'
+      redirect_to store_path(@store)
     else
-      render :new # データが保存できなければ新規登録ページを表示する
+      render :new
     end
   end
   
-  def destroy ## 削除機能
-    @store = Store.find(params[:store_id]) #  レビューを削除する店舗を特定する
-    @store_review = @store.store_reviews.find(params[:id]) #  該当のレビューを見つける(リレーションを辿って特定する)
-    @store_review.destroy #  レビューを削除する
-    flash[:notice] = 'レビューを削除しました' # フラッシュメッセージの表示
-    redirect_to store_path(@store) # 店舗の詳細ページへ遷移する
+  def destroy
+    @store = Store.find(params[:store_id])
+    @store_review = @store.store_reviews.find(params[:id])
+    @store_review.destroy
+    flash[:notice] = 'レビューを削除しました'
+    redirect_to store_path(@store)
   end
   
   private
   
-  def store_review_params ## ストロングパラメーター
-    params.require(:store_review).permit(:rate,:comment) # idの紐付けをしないカラムを指定する
+  def store_review_params
+    params.require(:store_review).permit(:rate,:comment)
   end
 end

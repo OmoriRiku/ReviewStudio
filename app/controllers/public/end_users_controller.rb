@@ -4,18 +4,18 @@ class Public::EndUsersController < ApplicationController
   before_action :ensure_user_admin, only: [:edit, :unsubscribe]
   
   def index
-    @users = EndUser.all # ユーザーの全データをビューへ渡す
+    @users = EndUser.all
   end
     
-  def show ## ユーザー詳細ページ
+  def show
   end
   
-  def edit ## ユーザー編集ページの表示
+  def edit
   end
   
-  def update ## ユーザー情報の更新
-    @user.update(user_params) # ストロングパラメーターを受け取り更新する
-    redirect_to end_user_path(@user) # 編集後はユーザーの詳細ページへ遷移する
+  def update
+    @user.update(user_params)
+    redirect_to end_user_path(@user)
   end
   
   def unsubscribe
@@ -29,7 +29,7 @@ class Public::EndUsersController < ApplicationController
   
   private
   
-  def ensure_guest_user ## ゲストユーザーで編集ページへ遷移しようとした場合、トップページへ遷移する
+  def ensure_guest_user
     @user = EndUser.find(params[:id])
     if @user.name == "guestuser"
       redirect_to end_user_path(current_end_user), notice: 'ゲストユーザーは編集できません'
@@ -43,11 +43,11 @@ class Public::EndUsersController < ApplicationController
     end
   end
   
-  def set_user ## deviseの機能からcurrent_end_userで個人を特定してインスタンス変数へ代入する
+  def set_user
     @user = EndUser.find(params[:id])
   end
   
-  def user_params ## ストロングパラメーター
-    params.require(:end_user).permit(:name, :profile_image, :is_active)   #  end_usersモデルのname,profile_imageカラムのみ扱う
+  def user_params
+    params.require(:end_user).permit(:name, :profile_image, :is_active)
   end
 end

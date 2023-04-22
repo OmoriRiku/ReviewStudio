@@ -16,6 +16,7 @@
               <td><%= f.label :name, 'ユーザー名', class: "col-form-label" %></td>
               <td><%= f.text_field :name, autofocus: true, class: "form-control" %></td>
             </tr>
+            <!-- 管理者であればユーザーステータスの表示 -->
             <% if admin_signed_in? %>
             <tr>
               <td><%= f.label 'ユーザーステータス' %></td>

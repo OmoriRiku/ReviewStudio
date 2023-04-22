@@ -1,4 +1,4 @@
-<!-- レビューのrateカラムが登録されていなければ平均評価を表示しない -->
+<!-- レビューが登録されていなければ平均評価を表示しない -->
 <% unless store.store_reviews.average(:rate) == nil %>
 <tr>
   <td>平均評価</td>

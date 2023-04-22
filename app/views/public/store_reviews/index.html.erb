@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 mx-auto">
-      <% if @store_reviews.exists? %>
+      <% if @store_reviews.present? %>
         <h2><%= @user.name %>の店舗レビュー</h2>
         <table class="table table-borderless">
           <tbody>
