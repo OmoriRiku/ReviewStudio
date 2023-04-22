@@ -32,7 +32,7 @@ https://app.diagrams.net/#G1YEaUGIrX5dEDsrQ7q4D9IoHh9GV2e9b6
 https://app.diagrams.net/#G1cmFw_h8TmWotT1kJ3PEVCPQKDKQ7_1tX
 - アプリケーション詳細設計  
 https://docs.google.com/spreadsheets/d/1kM28ZwEkv6dViaC76957nv1SfeZ6k2vZn4bGP_0WECs/edit#gid=1740272306
-- テスト仕様書
+- テスト仕様書  
 https://docs.google.com/spreadsheets/d/1f-mUcaN2g-eJFQg3cTEZwpyvfa3wbc2h/edit#gid=2072448154
 
 ## 開発環境
