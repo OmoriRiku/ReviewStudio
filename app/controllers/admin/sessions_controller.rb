@@ -8,7 +8,7 @@ class Admin::SessionsController < Devise::SessionsController
   
   def after_sign_in_path_for(resource)
     flash[:notice] = "管理者でログインしました"
-    root_path
+    end_users_path
   end
   
   def after_sign_out_path_for(resource)
