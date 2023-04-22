@@ -8,7 +8,7 @@
 
 ### テーマを選んだ理由
 自身が音楽スタジオを利用する前に、スタジオに関する情報を知ることが出来たらいいと思ったため。
-個人練習に適したスタジオなのか、料金がどのくらいなのか、どんなレンタル機材があるのかなどといったことが事前に知れたら嬉しいため
+個人練習に適したスタジオなのか、料金がどのくらいなのか、場所はどこなのかなどといったことが事前に知れたら嬉しいため
 
 ### ターゲットユーザー
 - 該当のスタジオを使ったことがないユーザー（閲覧者）
@@ -41,7 +41,7 @@ https://docs.google.com/spreadsheets/d/1kM28ZwEkv6dViaC76957nv1SfeZ6k2vZn4bGP_0W
 - IDE：Cloud9
 
 ## 使用素材
-- shutterstockからフリーの画像素材を拝借予定
+- shutterstockから画像素材を拝借予定
 - https://www.shutterstock.com/ja
 - ロゴの作成
 - https://www.shopify.com/jp/tools/logo-maker
