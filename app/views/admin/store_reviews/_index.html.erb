@@ -29,7 +29,7 @@
       <% if current_end_user == store_review.end_user || admin_signed_in? %>
       <tr>
         <td class="text-right">
-          <%= link_to '削除する', store_store_review_path(store_review.store, store_review), method: :delete, class: "btn btn-danger" %>
+          <%= link_to '削除する', store_store_review_path(store_review.store, store_review), method: :delete, data: {confirm: "レビューを削除してもよろしいですか？"}, class: "btn btn-danger" %>
         </td>
       </tr>
       <% end %>

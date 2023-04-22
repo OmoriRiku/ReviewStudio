@@ -31,7 +31,7 @@
         <!-- 管理者、もしくはレビュー投稿者に削除ボタンを表示 -->
         <% if current_end_user == studio_review.end_user || admin_signed_in? %>
           <tr class="text-right">
-            <td><%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, class: "btn btn-danger"%></td>
+            <td><%= link_to '削除する', studio_studio_review_path(studio_review.studio, studio_review), method: :delete, data: { confirm: "レビューを削除してもよろしいですか？" }, class: "btn btn-danger"%></td>
           </tr>
         <% end %>
       <% end %>
