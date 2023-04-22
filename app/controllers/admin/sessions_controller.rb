@@ -2,7 +2,6 @@
 
 class Admin::SessionsController < Devise::SessionsController
   before_action :is_login_redirect_back, only: [:new, :create]
-  before_action :after_sign_in_path_for, only: [:create]
   
   protected
   

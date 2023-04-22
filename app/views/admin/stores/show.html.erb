@@ -66,8 +66,13 @@
   </div>
   <!-- ユーザーがログインしていれば、レビューの新規投稿リンクを表示 -->
   <% if end_user_signed_in? %>
-  <div class="text-center mt-3 mb-3">
-    <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
-  </div>
+    <div class="text-center mt-3 mb-3">
+      <%= link_to '店舗レビューを作成する', new_store_store_review_path(@store), class: "btn btn-success" %>
+    </div>
+  <% end %>
+  <% unless admin_signed_in? || end_user_signed_in? %>
+    <div class="text-center mt-3 mb-3">
+      <%= link_to '新規登録してレビューを作成する', new_end_user_registration_path, class: "btn btn-success" %>
+    </div>
   <% end %>
 </div>
