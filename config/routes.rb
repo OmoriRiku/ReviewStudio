@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     
     # 用途のルーティング
     # URL /uses/...
-    resources :uses, only: [:index, :create, :edit, :update]
+    resources :uses, except: [:new, :show]
     
     # 店舗のルーティング
     # 店舗レビュー用に入れ子にする

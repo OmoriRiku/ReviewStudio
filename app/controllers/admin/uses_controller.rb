@@ -1,6 +1,6 @@
 class Admin::UsesController < ApplicationController
   before_action :is_admin_login_authenticate, only: [:create, :edit, :update]
-  before_action :set_use, only: [:edit, :update]
+  before_action :set_use, only: [:edit, :update, :destroy]
   
   def index
     @use = Use.new
@@ -28,6 +28,12 @@ class Admin::UsesController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @use.destroy
+    flash[:notice] = "使用用途を削除いたしました"
+    redirect_to request.referer
   end
   
   private
