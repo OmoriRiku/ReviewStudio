@@ -37,10 +37,9 @@ class Admin::StudiosController < ApplicationController
   end
   
   def destroy
-    if @studio.destroy
-      flash[:notice] = 'スタジオを削除しました'
-      redirect_to studios_path
-    end
+    @studio.destroy
+    flash[:notice] = 'スタジオを削除しました'
+    redirect_to studios_path
   end
   
   def associated_result_studio

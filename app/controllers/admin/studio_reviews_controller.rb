@@ -22,10 +22,9 @@ class Admin::StudioReviewsController < ApplicationController
   def destroy
     @studio = Studio.find(params[:studio_id])
     @studio_review = @studio.studio_reviews.find(params[:id])
-    if @studio_review.destroy
-      flash[:notice] = 'レビューを削除しました'
-      redirect_to studio_path(@studio)
-    end
+    @studio_review.destroy
+    flash[:notice] = 'レビューを削除しました'
+    redirect_to studio_path(@studio)
   end
   
   private

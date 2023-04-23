@@ -1,13 +1,9 @@
 class ApplicationController < ActionController::Base
   protected
-  #
-  # ログイン判定用
-  #
-  
   ## 管理者もしくはユーザーがログインしていれば元のページへ遷移するメソッド
   def is_login_redirect_back
     if end_user_signed_in? || admin_signed_in?
-      redirect_back fallback_location: root_path
+      redirect_back(fallback_location: root_path, notice: "すでにログインしています")
     end
   end
   

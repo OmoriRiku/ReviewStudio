@@ -36,10 +36,6 @@ Rails.application.routes.draw do
     # aboutページのルーティング
     # URL /about
     get '/about' => 'homes#about'
-    
-    # 用途のルーティング
-    # URL /uses/...
-    resources :uses, only: [:index, :create, :edit, :update]
   end
   
   # 管理者用
@@ -57,6 +53,10 @@ Rails.application.routes.draw do
   ## ファイルパスをadmin/...へ
   #  urlを任意に指定する
   scope module: :admin do
+    
+    # 用途のルーティング
+    # URL /uses/...
+    resources :uses, only: [:index, :create, :edit, :update]
     
     # 店舗のルーティング
     # 店舗レビュー用に入れ子にする

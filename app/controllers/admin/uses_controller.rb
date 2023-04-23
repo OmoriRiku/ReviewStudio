@@ -1,4 +1,4 @@
-class Public::UsesController < ApplicationController
+class Admin::UsesController < ApplicationController
   before_action :is_admin_login_authenticate, only: [:create, :edit, :update]
   before_action :set_use, only: [:edit, :update]
   

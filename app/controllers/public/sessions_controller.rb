@@ -3,11 +3,10 @@
 class Public::SessionsController < Devise::SessionsController
   before_action :reject_inactive_user, only: [:create]
   before_action :is_login_redirect_back, only: [:create]
-  before_action :after_sign_out_path_for, only: [:create]
   
   protected
   
-  def after_sign_in_path_for(resource)
+  def after_sign_up_path_for(resource)
     flash[:notice] = "ログインしました"
     root_path
   end
@@ -23,4 +22,5 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to new_end_user_session_path, notice: "退会しているのでログインできません"
     end
   end
+  
 end
