@@ -10,6 +10,7 @@ class Admin::UsesController < ApplicationController
   def create
     @use = Use.new(use_params)
     if @use.save
+      flash[:notice] = "使用用途を登録いたしました"
       redirect_to uses_path
     else
       @uses = Use.all
@@ -22,6 +23,7 @@ class Admin::UsesController < ApplicationController
   
   def update
     if @use.update(use_params)
+      flash[:notice] = "使用用途を更新いたしました"
       redirect_to uses_path
     else
       render :edit
