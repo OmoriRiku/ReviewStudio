@@ -11,11 +11,11 @@
       <h2 class="text-center">スタジオ一覧(最新8件)</h2>
       <div class="d-flex flex-wrap justify-content-around">
       <% @studios.each do |studio| %>
-        <div class="mt-5">
+        <div class="mt-3">
           <%= link_to studio_path(studio) do %>
-            <%= image_tag studio.get_studio_image(200,200), class: "bg-wrapper" %>
+            <%= image_tag studio.get_studio_image(190,190), class: "bg-wrapper" %>
           <% end %>
-        <h3 class="text-center mt-3 page-title"><%= studio.name %></h3>
+        <h3 class="text-center mt-3 page-title" style="font-size: 16px;"><%= studio.name %></h3>
         </div>
       <% end %>
       </div>
