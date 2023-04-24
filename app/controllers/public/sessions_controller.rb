@@ -6,7 +6,7 @@ class Public::SessionsController < Devise::SessionsController
   
   protected
   
-  def after_sign_up_path_for(resource)
+  def after_sign_in_path_for(resource)
     flash[:notice] = "ログインしました"
     root_path
   end
