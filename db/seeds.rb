@@ -335,8 +335,8 @@ StudioReview.create!(
       end_user_id: users[0].id,
       studio_id: studios[5].id,
       rate: '4',
-      number_studio: '4',
-      comment: 'メンバーでよく使用しています。アンプのパワーがあり、大きい音でのアンサンブルに適した印象でした。'
+      number_studio: '1',
+      comment: 'いつもはバンドで入りますが、個人練習で入る時はここが一番落ち着きます。'
     },
     {
       end_user_id: users[3].id,
