@@ -333,6 +333,20 @@ StudioReview.create!(
     },
     {
       end_user_id: users[0].id,
+      studio_id: studios[5].id,
+      rate: '4',
+      number_studio: '4',
+      comment: 'メンバーでよく使用しています。アンプのパワーがあり、大きい音でのアンサンブルに適した印象でした。'
+    },
+    {
+      end_user_id: users[3].id,
+      studio_id: studios[6].id,
+      rate: '3',
+      number_studio: '4',
+      comment: '普通でした。ありがとうございました。'
+    },
+    {
+      end_user_id: users[0].id,
       studio_id: studios[6].id,
       rate: '4',
       number_studio: '4',
@@ -365,6 +379,13 @@ StudioReview.create!(
       rate: '5',
       number_studio: '4',
       comment: 'ロックバンドで入りました。ありがとうございました。'
+    },
+    {
+      end_user_id: users[4].id,
+      studio_id: studios[8].id,
+      rate: '2',
+      number_studio: '1',
+      comment: '隣のスタジオの音が入ってきて集中できなかったです。'
     },
   ]
 )
