@@ -101,9 +101,9 @@ studios = Studio.create!(
       store_id: stores[0].id,
       name: 'B studio',
       introduction: 'こちらは4~5人ほどで入るとちょうどいい広さのスタジオになっています。バンドメンバー間での日々の練習にご活用ください。こちらのスタジオも全面鏡張りのスタジオになっていますので、フォームチェックやパフォーマンスの確認も行えます。',
-      personal_price: '600',
-      three_price: '1500',
-      more_price: '2000',
+      personal_price: '610',
+      three_price: '1530',
+      more_price: '2040',
       studio_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-image3.jpg"), filename:"sample-post3.jpg"),
     },
     {
@@ -111,9 +111,9 @@ studios = Studio.create!(
       store_id: stores[0].id,
       name: 'C studio',
       introduction: 'こちらもB studio同様に4~5人ほどで入るとちょうどいい広さのスタジオになっています。バンドメンバー間での日々の練習にご活用ください。こちらのスタジオも全面鏡張りのスタジオになっていますので、フォームチェックやパフォーマンスの確認でご活用ください。',
-      personal_price: '600',
-      three_price: '1500',
-      more_price: '2000',
+      personal_price: '610',
+      three_price: '1530',
+      more_price: '2040',
       studio_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-image3.jpg"), filename:"sample-post3.jpg"),
     },
     {
@@ -171,9 +171,9 @@ studios = Studio.create!(
       store_id: stores[1].id,
       name: 'D studio',
       introduction: '約6~7人ほど入れる広さのスタジオになっています。普段のバンド練習で使われる方が多いです。音響設備もしっかりしています。',
-      personal_price: '600',
-      three_price: '1500',
-      more_price: '2000',
+      personal_price: '620',
+      three_price: '1560',
+      more_price: '2080',
       studio_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-image4.jpg"), filename:"sample-post4.jpg"),
     }
   ]
