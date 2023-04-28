@@ -1,7 +1,7 @@
 class Public::EndUsersController < ApplicationController
   before_action :set_user,          only: [:show, :edit, :update, :unsubscribe, :withdraw]
-  before_action :ensure_guest_user, only: [:edit, :unsubscribe]
-  before_action :ensure_user_admin, only: [:edit, :unsubscribe]
+  before_action :ensure_guest_user, only: [:edit, :unsubscribe, :withdraw]
+  before_action :ensure_user_admin, only: [:edit, :unsubscribe, :withdraw]
   
   def index
     @users = EndUser.all
@@ -32,7 +32,7 @@ class Public::EndUsersController < ApplicationController
   def ensure_guest_user
     @user = EndUser.find(params[:id])
     if @user.name == "guestuser"
-      redirect_to end_user_path(current_end_user), notice: 'ゲストユーザーは編集できません'
+      redirect_to end_user_path(@user), notice: 'ゲストユーザーは編集できません'
     end
   end
   
