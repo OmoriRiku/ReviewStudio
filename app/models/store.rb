@@ -1,7 +1,7 @@
 class Store < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 }                   
   validates :introduction, presence: true, length: { maximum: 800 }
-  validates :telephone_number, numericality: { only_integer: true, message: 'は半角文字で入力してください' }, length: { maximum: 15 }
+  validates :telephone_number, numericality: { only_integer: true, message: 'は半角文字で入力してください' }, length: { in: 9..15, message: 'は9~15文字以内で入力してください。' }
   validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'はハイフンを含めた半角文字で入力してください' }
   validates :address, presence: true, length: { maximum: 50 }
   validates :store_image, presence: { message: 'を選択してください' }
