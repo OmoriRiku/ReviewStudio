@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td><%= f.label :number_studio, '利用人数', class: "col-form-label" %></td>
-      <td><%= f.select :number_studio, *[1..10], { include_blank:"選択してください" }, { class: "custom-select w-50" } %></td>
+      <td><%= f.select :number_studio, *[1..15], { include_blank:"選択" }, { class: "custom-select w-25" } %></td>
     </tr>
     <tr>
       <td><%= f.label :comment, 'レビュー本文(400文字以内)', class: "col-form-label" %></td>

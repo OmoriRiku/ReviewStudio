@@ -18,8 +18,12 @@ class Public::SessionsController < Devise::SessionsController
   
   def reject_inactive_user
     @user = EndUser.find_by(email: params[:end_user][:email])
-    if @user.valid_password?(params[:end_user][:password]) && @user.is_active
-      redirect_to new_end_user_session_path, notice: "退会しているのでログインできません"
+    if @user
+      if @user.valid_password?(params[:end_user][:password]) && @user.is_active
+        redirect_to new_end_user_session_path
+      else
+        flash[:notice] = "退会しているためログインできません。"
+      end
     end
   end
   
