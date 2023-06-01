@@ -19,7 +19,7 @@ class Admin::StoresController < ApplicationController
   end
   
   def index
-    @stores = Store.all.page(params[:page]).per(8)
+    @stores = Store.all
   end
 
   def show
