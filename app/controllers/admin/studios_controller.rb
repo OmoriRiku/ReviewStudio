@@ -18,7 +18,7 @@ class Admin::StudiosController < ApplicationController
   end
 
   def index
-    @studios = Studio.all.page(params[:page]).per(8)
+    @studios = Studio.all
   end
 
   def show
