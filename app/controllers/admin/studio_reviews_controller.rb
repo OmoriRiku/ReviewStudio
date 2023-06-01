@@ -1,5 +1,5 @@
 class Admin::StudioReviewsController < ApplicationController
-  before_action :authenticate_end_user!, only: [:new, :create]
+  before_action :authenticate_end_user!, only: [:new, :create, :destroy]
   
   def new
     @studio = Studio.find(params[:studio_id])

@@ -1,5 +1,5 @@
 class Admin::StoreReviewsController < ApplicationController
-  before_action :authenticate_end_user!, only: [:new, :create]
+  before_action :authenticate_end_user!, only: [:new, :create, :destroy]
   
   def new
     @store = Store.find(params[:store_id])
